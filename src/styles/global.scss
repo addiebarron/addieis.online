@@ -1,0 +1,74 @@
+@import 'theme';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+p,
+span,
+h1 {
+  a {
+    color: black;
+    font-weight: bold;
+    text-decoration: underline;
+    &:hover {
+      color: $darkpink;
+    }
+    &.bandcamp:hover {
+      color: $bc;
+    }
+  }
+}
+
+body {
+  font-family: 'Inconsolata';
+  font-weight: lighter;
+  font-size: $bodyfont;
+  color: black;
+  background-color: $lightpink;
+  //@include bg-grad($lightpink);
+}
+
+span {
+  font-weight: lighter;
+  -webkit-box-decoration-break: clone;
+  -o-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.link {
+  background-color: #ffc8ff;
+  display: inline-block;
+  @include transition((all), 0.2s, ease);
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+// GENERAL CLASSES
+
+.hcenter {
+  @include hcenter;
+}
+.vcenter {
+  @include vcenter;
+}
+.center {
+  @include center;
+}
+// .slide-in {
+//   @include transform(scale(0, 1));
+//   @include transition((transform), 0.5s, ease);
+//   @include transform-origin(left center 0);
+//   &.loaded {
+//     @include transform(scale(1, 1));
+//   }
+// }
