@@ -9,9 +9,6 @@
     width: 100%;
     background: white;
     border-bottom: solid 1px $border-color;
-    //font-family: "Major Mono Display";
-    //font-size: 1.2em;
-    font-weight: bolder;
     ul {
       width: 100%;
       max-width: 500px;
@@ -21,6 +18,7 @@
       padding: 0;
       li.nav-item {
         display: block;
+        position: relative;
         margin: 0;
         padding: 0;
         cursor: pointer;
@@ -32,19 +30,19 @@
             margin: auto; // easy centering
           }
         }
+        &:hover {
+          a > span {
+            @include underline(4px, #ddd);
+          }
+        }
+        &[aria-current] {
+          position: relative;
+          display: inline-block;
+          & > a > span {
+            @include underline(4px, black);
+          }
+        }
       }
-    }
-  }
-
-  [aria-current] {
-    position: relative;
-    display: inline-block;
-    $underline-distance: 5px;
-    & > a > span {
-      border-bottom: solid 1px black;
-      padding-bottom: $underline-distance;
-      position: relative;
-      top: $underline-distance / 2;
     }
   }
 </style>

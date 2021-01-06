@@ -49,7 +49,7 @@
         }
       }
       &.bc svg {
-        @include transform(translateY(25%));
+        @include transform(translateY(16%));
       }
       &.github svg {
         @include transform(scale(0.9));

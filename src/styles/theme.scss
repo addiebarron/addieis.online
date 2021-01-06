@@ -33,15 +33,6 @@ $bodyfont: 18px;
   transform: $transforms;
 }
 
-// transform origin
-@mixin transform-origin($origin...) {
-  -moz-transform-origin: $origin;
-  -o-transform-origin: $origin;
-  -ms-transform-origin: $origin;
-  -webkit-transform-origin: $origin;
-  transform-origin: $origin;
-}
-
 // filter
 @mixin filter($filters...) {
   filter: $filters;
@@ -50,11 +41,11 @@ $bodyfont: 18px;
   -o-filter: $filters;
 }
 
-// letter spacing
-@mixin letter-spacing($amount) {
-  letter-spacing: $amount;
-  font-variant-ligatures: no-common-ligatures;
-  -webkit-font-variant-ligatures: no-common-ligatures; // required for letter spacing
+@mixin underline($underline-distance, $color) {
+  border-bottom: solid 1px $color;
+  padding-bottom: $underline-distance;
+  position: relative;
+  top: $underline-distance / 2 + 1;
 }
 
 // center items
@@ -88,44 +79,7 @@ $bodyfont: 18px;
   -moz-border-radius: $radius;
 }
 
-// floating & "raise on hover" effect
-@mixin float($inverse: false) {
-  @include transition((box-shadow, transform), 0.2s, ease);
-  @if $inverse {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    @include transform(scale(1.02));
-    &:hover {
-      box-shadow: 0 0 0;
-    }
-  } @else {
-    &:hover {
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-      @include transform(scale(1.02));
-    }
-  }
-}
-
 // box shadow defaults
 @mixin shad($dist: 10px, $opacity: 1) {
   box-shadow: $dist $dist rgba(0, 0, 0, $opacity);
-}
-
-// background gradient
-@mixin bg-grad($main-color, $secondary-color: white) {
-  background: -moz-linear-gradient(
-    top,
-    $main-color 0%,
-    $secondary-color 100%
-  ); /* FF3.6-15 */
-  background: -webkit-linear-gradient(
-    top,
-    $main-color 0%,
-    $secondary-color 100%
-  ); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(
-    to bottom,
-    $main-color 0%,
-    $secondary-color 100%
-  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0b4f0', endColorstr='#00207cca',GradientType=0 ); /* IE6-9 */
 }
