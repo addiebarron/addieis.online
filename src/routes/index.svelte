@@ -102,25 +102,17 @@
     <div class="text slide-in">
       <h1>hi! i'm addie</h1>
       <p>
-        i'm a self-taught web programmer and artist currently working as a
-        support engineer.
+        i'm a self-taught web programmer and technologist currently attending the <a href="https://recurse.com">recurse center</a>.
       </p>
       <p>
-        my work is mostly in javascript and python. i'm experienced with
-        wordpress, full stack node applications, and web extensions. this site
-        was built in
-        <a target="_blank" href="https://svelte.dev">svelte</a>
+        my work is mostly in javascript and python. i have experience with full stack node & django apps, web extensions, and svelte sites. this site was built in <a target="_blank" href="https://svelte.dev">svelte</a> and <a target="_blank" href="https://sapper.svelte.dev">sapper</a>.
       </p>
       <p>
-        i'm interested in decentralization, web communities, radical networks,
-        open source, and weird digital art.
+        i'm interested in radical networks, web communities, decentralization,
+        gardens, and weird digital art. 
       </p>
       <p>
-        currently working at
-        <a
-          class="bandcamp"
-          target="blank"
-          href="https://bandcamp.com/about">bandcamp</a>.
+        currently building a community mesh network with <a target="_blank" href="https://phillycommunitywireless.org">Philly Community Wireless</a>.
       </p>
       <Socials />
     </div>
