@@ -5,7 +5,8 @@
     align-items: center;
     width: 150px;
     @media only screen and (max-width: 890px) {
-      width: 100%;
+      width: 50%;
+      margin: auto;
     }
     padding-top: 10px;
     .social {

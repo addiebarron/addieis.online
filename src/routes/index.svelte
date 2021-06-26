@@ -41,7 +41,7 @@
 
   .home {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 400px);
+    grid-template-columns: repeat(auto-fit, 500px);
     //grid-template-rows: 400px 1fr;
     @media only screen and (max-width: 450px) {
       grid-template-columns: 1fr;
@@ -49,8 +49,8 @@
       padding-bottom: 20px;
     }
     justify-content: space-around;
-    grid-column-gap: 50px;
-    width: 900px;
+    grid-column-gap: 0;
+    width: 1050px;
     max-width: 100%;
     margin: auto;
     padding: 20px;
@@ -112,7 +112,7 @@
         gardens, and weird digital art. 
       </p>
       <p>
-        currently building a community mesh network with <a target="_blank" href="https://phillycommunitywireless.org">Philly Community Wireless</a>.
+        currently building a community mesh network with <a target="_blank" href="https://phillycommunitywireless.org">philly community wireless</a>.
       </p>
       <Socials />
     </div>
