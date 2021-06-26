@@ -11,6 +11,7 @@ html,
 body {
   height: 100%;
   width: 100%;
+  background-color: $lightpink;
 }
 
 p,
@@ -34,7 +35,6 @@ body {
   font-family: 'Inconsolata';
   font-size: $bodyfont;
   font-weight: normal;
-  background-color: $lightpink;
 }
 
 // GENERAL CLASSES
