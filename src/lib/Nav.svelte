@@ -1,5 +1,5 @@
 <script>
-  export let segment;
+  export let path;
 </script>
 
 <style lang="scss">
@@ -57,18 +57,18 @@
   <ul>
     <li
       class="nav-item"
-      aria-current={segment === undefined ? 'page' : undefined}>
+      aria-current={path == "/" ? 'page' : undefined}>
       <a href="/"> <span>about</span> </a>
     </li>
     <li
       class="nav-item"
-      aria-current={segment === 'projects' ? 'page' : undefined}>
-      <a href="projects" rel="prefetch"> <span>projects</span> </a>
+      aria-current={path.startsWith('/projects') ? 'page' : undefined}>
+      <a href="/projects" rel="prefetch"> <span>projects</span> </a>
     </li>
     <li
       class="nav-item"
-      aria-current={segment === 'resume' ? 'page' : undefined}>
-      <a href="resume"> <span>resume</span> </a>
+      aria-current={path.startsWith('/resume') ? 'page' : undefined}>
+      <a href="/resume"> <span>resume</span> </a>
     </li>
   </ul>
 </nav>

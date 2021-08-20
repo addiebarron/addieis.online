@@ -1,20 +1,20 @@
 <script>
-  import { onMount } from "svelte";
   export let project;
-
-  let thisImage;
-  let loaded = false;
-
-  let stagger = (1 / project.id) * 1000;
-
-  onMount(() => {
-    thisImage.onload = () => {
-      loaded = true;
-      setTimeout(() => thisImage.removeAttribute("style"), stagger);
-    };
-    thisImage.src = project.imagePath || "/placeholder.png";
-  });
 </script>
+
+<div class="project">
+  <a href={project.url} target="blank" class="rect">
+    <!-- svelte-ignore missing-declaration -->
+    <img
+      alt={project.title}
+      class="background"
+      src={project.imageSrc || "/images/placeholder.png"}/>
+    <div class="text title"><span>{project.title ? project.title.toLowerCase() : ""}</span></div>
+    <div class="text description">
+      <span>{project.description ? project.description.toLowerCase() : ""}</span>
+    </div>
+  </a>
+</div>
 
 <style lang="scss">
   @import "../styles/theme";
@@ -41,9 +41,6 @@
         opacity: 0.75;
         @include filter(saturate(60%));
         @include transition(opacity);
-        &:not(.loaded) {
-          opacity: 0;
-        }
       }
       .text {
         position: absolute;
@@ -77,19 +74,3 @@
     }
   }
 </style>
-
-<div class="project">
-  <a href={project.url} target="blank" class="rect">
-    <!-- svelte-ignore missing-declaration -->
-    <img
-      bind:this={thisImage}
-      alt={project.title}
-      class="background"
-      class:loaded
-      style="transition-delay:{stagger}ms;" />
-    <div class="text title"><span>{project.title.toLowerCase()}</span></div>
-    <div class="text description">
-      <span>{project.description.toLowerCase()}</span>
-    </div>
-  </a>
-</div>

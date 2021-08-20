@@ -23,9 +23,6 @@ h1 {
     font-weight: bold;
     text-decoration: underline;
     &:hover {
-      color: $darkpink;
-    }
-    &.bandcamp:hover {
       color: $bc;
     }
   }
@@ -39,6 +36,9 @@ body {
 
 // GENERAL CLASSES
 
+.hidden {
+  display: none;
+}
 .hcenter {
   @include hcenter;
 }
@@ -47,6 +47,9 @@ body {
 }
 .center {
   @include center;
+}
+.overlay {
+  @include overlay;
 }
 // .slide-in {
 //   @include transform(scale(0, 1));

@@ -1,40 +1,44 @@
 <script context="module">
-  import Project from "../components/Project.svelte";
-
-  export async function preload(page, session) {
-    const apiURL = session.CMS_API_URL;
-    const res = await this.fetch(apiURL + "/portfolio-items"); // served from strapi
-    const projects = await res.json();
-
-    projects.forEach((project) => {
-      project.imagePath = apiURL;
-      // Node <=12
-      if (project.image) {
-        if (project.image.formats) {
-          if (project.image.formats.medium) {
-            project.imagePath += project.image.formats.medium.url;
-          } else {
-            project.imagePath += project.image.url;
-          }
-        } else {
-          project.imagePath += project.image.url;
-        }
-      } else {
-        project.imagePath = null;
+  export async function load({ fetch }) {
+    const res = await fetch("data/projects.json");
+    return { 
+      props: {
+        projects: await res.json(),
       }
-      // Node >=14
-      // project.imagePath += project.image.formats?.medium?.url || project.image.url;
-    });
-
-    projects.reverse(); // CMS weirdness
-
-    return { projects };
+    };
   }
 </script>
 
 <script>
+  import Project from "$lib/Project.svelte";
+  import CreateProjectModal from "$lib/CreateProjectModal.svelte";
+
   export let projects;
+
+  let projects_creatable = true;
+  let modal_show = false; 
 </script>
+
+<svelte:head>
+  <title>addie b - projects</title>
+</svelte:head>
+
+<div class="projects">
+  <div class="projects-grid">
+    {#each projects as project}
+      {#if project.show}
+        <Project {project}/>
+      {/if}
+    {/each}
+    {#if projects_creatable}
+      <button id="create-project-button" on:click={() => {modal_show = true}}>
+        +
+      </button>
+    {/if}
+  </div>
+</div>
+
+<CreateProjectModal bind:modal_show />
 
 <style lang="scss">
   @import "../styles/theme";
@@ -61,19 +65,17 @@
       max-width: 1520px;
       padding-bottom: 30px;
     }
+    #create-project-button {
+      font-size: 40px;
+      color: gainsboro;
+      cursor: pointer;
+      background-color: white;
+      border: solid 1px gainsboro;
+      border-radius: 10px;
+      &:hover {
+        color: grey;
+        border-color: grey;
+      }
+    }
   }
 </style>
-
-<svelte:head>
-  <title>addie b - projects</title>
-</svelte:head>
-
-<div class="projects">
-  <div class="projects-grid">
-    {#each projects as project}
-      {#if project.show}
-        <Project {project} />
-      {/if}
-    {/each}
-  </div>
-</div>

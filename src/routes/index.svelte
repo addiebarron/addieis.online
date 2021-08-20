@@ -1,18 +1,8 @@
-<script context="module">
-  export async function preload(page, session) {
-    const { CMS_API_URL } = session;
-
-    return { apiURL: CMS_API_URL };
-  }
-</script>
-
 <script>
-  import Socials from "../components/Socials.svelte";
+  import Socials from "$lib/Socials.svelte";
 
   import { onMount } from "svelte";
   import jQuery from "jquery";
-
-  export let apiURL;
 
   onMount(() => {
     let count = 0;
@@ -26,13 +16,8 @@
       // open admin with 5 clicks on me
       .on("click", ".me", (e) => {
         count += 1;
-        if (count >= 5) window.location = apiURL + "/admin";
+        if (count >= 5) window.location = "add";
       });
-
-    // slide text in
-    // setTimeout(function () {
-    //   document.querySelector(".slide-in").classList.add("loaded");
-    // }, 500);
   });
 </script>
 
@@ -65,7 +50,7 @@
         @include circular(150px);
         margin: 0 auto 20px auto;
       }
-      background: url("/a.jpg") no-repeat right bottom;
+      background: url("/images/a.jpg") no-repeat right bottom;
       background-size: 105%;
       background-clip: content-box;
       @include transition((transform), 0.2s, ease);
@@ -99,20 +84,20 @@
 <div class="home">
   <div class="me" />
   <div class="about-me">
-    <div class="text slide-in">
+    <div class="text">
       <h1>hi! i'm addie</h1>
       <p>
-        i'm a self-taught web programmer and technologist currently attending the <a href="https://recurse.com">recurse center</a>.
+        i'm a self-taught web programmer and technologist currently attending the <a href="https://recurse.com">Recurse Center</a>.
       </p>
       <p>
-        my work is mostly in javascript and python. i have experience with full stack node & django apps, web extensions, and svelte sites. this site was built in <a target="_blank" href="https://svelte.dev">svelte</a> and <a target="_blank" href="https://sapper.svelte.dev">sapper</a>.
+        my work is mostly in javascript and python. i have experience with full stack node & django apps, web extensions, and svelte sites. this site was built in <a target="_blank" href="https://svelte.dev">Svelte</a> and <a target="_blank" href="https://sapper.svelte.dev">SvelteKit</a>.
       </p>
       <p>
         i'm interested in radical networks, web communities, decentralization,
         gardens, and weird digital art. 
       </p>
       <p>
-        currently building a community mesh network with <a target="_blank" href="https://phillycommunitywireless.org">philly community wireless</a>.
+        currently building a community mesh network with <a target="_blank" href="https://phillycommunitywireless.org">Philly Community Wireless</a>.
       </p>
       <Socials />
     </div>
