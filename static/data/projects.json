@@ -1,33 +1,9 @@
 [
   {
-    "id": 0,
-    "title": "test project",
-    "description": "this is a test",
-    "url": "https://addieis.online",
-    "imageSrc": "/images/placeholder.png",
-    "show": true
-  },
-  {
     "id": 1,
     "title": "test",
     "description": "",
     "url": "",
     "imageSrc": "images/projects/7krO5F5K-_qAQIat-6Mia.webp"
-  },
-  {
-    "id": 2,
-    "title": "test",
-    "description": "test",
-    "url": "test",
-    "imageSrc": "images/projects/aUzcdyRBawc3E3MdxklxN.webp",
-    "show": true
-  },
-  {
-    "id": 3,
-    "title": "snow geese",
-    "description": "these are some nice snow geese :)",
-    "url": "https://en.wikipedia.org/wiki/Snow_goose",
-    "imageSrc": "images/projects/OJcDdMt1cfthmgxP6LShV.webp",
-    "show": true
   }
 ]

@@ -1,9 +1,10 @@
 <script context="module">
-  export async function load({ fetch }) {
+  export async function load({ fetch, page }) {
     const res = await fetch("data/projects.json");
     return { 
       props: {
         projects: await res.json(),
+        sudo: page.query.has("sudo"),
       }
     };
   }
@@ -13,9 +14,8 @@
   import Project from "$lib/Project.svelte";
   import CreateProjectModal from "$lib/CreateProjectModal.svelte";
 
-  export let projects;
+  export let projects, sudo;
 
-  let projects_creatable = true;
   let modal_show = false; 
 </script>
 
@@ -27,10 +27,10 @@
   <div class="projects-grid">
     {#each projects as project}
       {#if project.show}
-        <Project {project}/>
+        <Project {project} bind:sudo />
       {/if}
     {/each}
-    {#if projects_creatable}
+    {#if sudo}
       <button id="create-project-button" on:click={() => {modal_show = true}}>
         +
       </button>
@@ -66,6 +66,7 @@
       padding-bottom: 30px;
     }
     #create-project-button {
+      height: 250px;
       font-size: 40px;
       color: gainsboro;
       cursor: pointer;

@@ -18,10 +18,6 @@
       <!-- Project creation form -->
       <CreateProjectForm bind:previewProject />
 
-      <p>Preview:</p>
-      <div class="project-preview">
-        <Project project={previewProject}/>
-      </div>
     </div>
   </div>
 {/if}

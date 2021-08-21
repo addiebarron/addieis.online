@@ -1,74 +1,77 @@
 import { nanoid } from "nanoid";
-import sharp from "sharp";
 import { promises as fsPromises } from "fs";
 const { writeFile, readFile } = fsPromises;
 
-import { ProjectData } from "$lib/store";
-import { forStatement } from "@babel/types";
+import {
+  saveProcessedImage,
+  saveUnprocessedImage,
+  removeDirIfExists,
+  makeDirIfNone,
+} from "../_utils";
 
-// everything is relative to static
-const staticDir = "static/";
-const uploadsURL = "images/projects/";
-const uploadsDir = staticDir + uploadsURL;
+// this project's unique ID
+const projectUUID = nanoid();
 
-const dataFile = staticDir + "data/projects.json";
+// filesystem actions are relative to static
+const staticDir = "static";
+// in the browser, static is served from /
+const imageLoc = `/images/projects/${projectUUID}/`;
+
+const uploadsDir = staticDir + imageLoc;
+const dataFile = staticDir + "/data/projects.json";
 
 export async function post(request) {
   const body = getFormBody(request.body);
 
   // Upload Image
   try {
-    console.log("Trying to upload image...");
-    body.imageSrc = await saveImage(body.imageBase64);
+    await makeDirIfNone(uploadsDir);
+    // save original and processed versions
+    await saveProcessedImage(body.imageBase64, uploadsDir + "main.png");
+    await saveUnprocessedImage(body.imageBase64, uploadsDir + "orig.png");
+    // set project imageSrc
+    body.imageSrc = imageLoc + "main.png";
   } catch (err) {
-    console.log(err);
-    return { status: 500 };
+    return serverError(err);
   }
 
   // Save to JSON file
   try {
     await saveProjectData(body);
   } catch (err) {
-    console.log(err);
-    return { status: 500 };
+    await removeDirIfExists(uploadsDir);
+    return serverError(err);
   }
 
   return {
     status: 301,
-    headers: { Location: "/projects?success" },
+    headers: { Location: "/projects?sudo&success" },
   };
 }
 
-async function saveImage(imageBase64) {
-  const imageName = `${nanoid()}.webp`;
-
-  await sharp(Buffer.from(imageBase64, "base64"))
-    .rotate()
-    .resize({ width: 200, height: 200 })
-    .webp()
-    .toFile(uploadsDir + imageName);
-
-  return uploadsURL + imageName;
-}
-
+// Save a given project to the file
 async function saveProjectData(body) {
   const data = await readFile(dataFile);
   const projects = JSON.parse(data.toString());
 
-  const newProject = {
-    id: projects.length,
+  projects.push({
+    id: projectUUID,
     title: body.title,
     description: body.description,
     url: body.url,
+    color: body.color,
     imageSrc: body.imageSrc,
     show: body.show,
-  };
-
-  projects.push(newProject);
+  });
 
   const newData = JSON.stringify(projects, null, 2);
-
   await writeFile(dataFile, newData);
+}
+
+// generic server error
+function serverError(err) {
+  console.log(err);
+  return { status: 500 };
 }
 
 // nice helper function via Dana Woodman:

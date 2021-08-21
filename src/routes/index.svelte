@@ -12,14 +12,44 @@
       .on("click", ".link", function (e) {
         e.preventDefault();
         window.open(this.href, "_blank");
-      })
-      // open admin with 5 clicks on me
-      .on("click", ".me", (e) => {
-        count += 1;
-        if (count >= 5) window.location = "add";
       });
   });
+
+  let numClicks = 0;
+
+  function testAuth() {
+    numClicks++;
+    if (numClicks >= 10) window.location = '/projects?sudo';
+  }
 </script>
+
+
+<svelte:head>
+  <title>addie b</title>
+</svelte:head>
+
+<div class="home">
+  <div class="me" on:click={testAuth}/>
+  <div class="about-me">
+    <div class="text">
+      <h1>hi! i'm addie</h1>
+      <p>
+        i'm a self-taught web programmer and technologist currently attending the <a href="https://recurse.com">Recurse Center</a>.
+      </p>
+      <p>
+        my work is mostly in javascript and python. i have experience with full stack node & django apps, web extensions, and svelte sites. this site was built in <a target="_blank" href="https://svelte.dev">Svelte</a> and <a target="_blank" href="https://sapper.svelte.dev">SvelteKit</a>.
+      </p>
+      <p>
+        i'm interested in radical networks, web communities, decentralization,
+        gardens, and weird digital art. 
+      </p>
+      <p>
+        currently building a community mesh network with <a target="_blank" href="https://phillycommunitywireless.org">Philly Community Wireless</a>.
+      </p>
+      <Socials />
+    </div>
+  </div>
+</div>
 
 <style lang="scss">
   @import "../styles/theme";
@@ -76,30 +106,3 @@
     }
   }
 </style>
-
-<svelte:head>
-  <title>addie b</title>
-</svelte:head>
-
-<div class="home">
-  <div class="me" />
-  <div class="about-me">
-    <div class="text">
-      <h1>hi! i'm addie</h1>
-      <p>
-        i'm a self-taught web programmer and technologist currently attending the <a href="https://recurse.com">Recurse Center</a>.
-      </p>
-      <p>
-        my work is mostly in javascript and python. i have experience with full stack node & django apps, web extensions, and svelte sites. this site was built in <a target="_blank" href="https://svelte.dev">Svelte</a> and <a target="_blank" href="https://sapper.svelte.dev">SvelteKit</a>.
-      </p>
-      <p>
-        i'm interested in radical networks, web communities, decentralization,
-        gardens, and weird digital art. 
-      </p>
-      <p>
-        currently building a community mesh network with <a target="_blank" href="https://phillycommunitywireless.org">Philly Community Wireless</a>.
-      </p>
-      <Socials />
-    </div>
-  </div>
-</div>

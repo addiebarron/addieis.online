@@ -1,47 +1,72 @@
 <script>
-  export let project;
+  import {colors} from "$lib/store";
+
+  export let project, sudo;
+
+  async function deleteThisProject () {
+    if (!confirm(`Are you sure you want to delete "${project.title}"?`)) return;
+
+    const res = await fetch("/api/project/delete", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(project),
+    })
+
+    if (res.ok) {
+      window.location = res.url;
+    } else {
+      console.log(res)
+    }
+  }
 </script>
 
-<div class="project">
+<div class="project" style="background-color: {project.color}; background-image: url('{project.imageSrc || "/images/placeholder.png"}');">
   <a href={project.url} target="blank" class="rect">
-    <!-- svelte-ignore missing-declaration -->
-    <img
+    <!-- <img
       alt={project.title}
-      class="background"
-      src={project.imageSrc || "/images/placeholder.png"}/>
+      class="backgrcolors[Math.floor(Math.random()*colors.length)ound"
+      src={project.imageSrc || "/images/placeholder.png"}/> -->
     <div class="text title"><span>{project.title ? project.title.toLowerCase() : ""}</span></div>
     <div class="text description">
       <span>{project.description ? project.description.toLowerCase() : ""}</span>
     </div>
   </a>
+  {#if sudo}
+    <button class="project-delete-button" on:click={deleteThisProject}>×</button>
+  {/if}
 </div>
 
 <style lang="scss">
   @import "../styles/theme";
 
   .project {
+    position:relative;
     @include shad;
     border: solid 1px black;
     overflow: hidden;
-    &:hover img.background.loaded {
-      opacity: 1;
-    }
+    // &:hover img.background.loaded {
+    //   opacity: 1;
+    // }
     width: min(100%, 375px);
+    background-size: cover;
+    background-blend-mode: multiply;
     a.rect {
       display: block;
       position: relative;
       height: 250px;
       width: 100%;
-      img.background {
-        display: block;
-        width: 100%;
-        height: 250px;
-        object-fit: cover; // no ie
-        object-position: center; // no ie
-        opacity: 0.75;
-        @include filter(saturate(60%));
-        @include transition(opacity);
-      }
+      // img.background {
+      //   display: block;
+      //   width: 100%;
+      //   height: 250px;
+      //   object-fit: cover; // no ie
+      //   object-position: center; // no ie
+      //   //opacity: 0.75;
+      //   //@include filter(saturate(60%));
+      //   //@include transition(opacity);
+      // }
       .text {
         position: absolute;
         left: 0;
@@ -70,6 +95,22 @@
         & .background {
           border-width: 2px;
         }
+      }
+    }
+    .project-delete-button {
+      position: absolute;
+      top:15px;
+      right:15px;
+      width: 30px;
+      height: 30px;
+      font-size: 20px;
+      border-radius: 50%;
+      border: solid 1px lightgrey;
+      background: white;
+      cursor: pointer;
+      &:hover {
+        background: rgb(255, 134, 134);
+        color:white;
       }
     }
   }

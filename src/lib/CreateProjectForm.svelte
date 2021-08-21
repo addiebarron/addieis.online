@@ -1,13 +1,11 @@
 <script>
-  export let previewProject;
+  import {colors} from "$lib/store"
 
-  let files, imageBase64;
+  let files, imageBase64, color;
 
   function handleImageSelect (image) {
     const reader = new FileReader();
-    reader.onload = (e) => {
-      // preview the base64 image
-      previewProject.imageSrc = e.target.result;
+    reader.onload = async (e) => {
       imageBase64 = e.target.result.split(',')[1];
     };
     reader.readAsDataURL(image);
@@ -23,21 +21,32 @@
 
 <form id="project-form"
       on:submit={handleFormSubmit}
-      action="/api/create"
+      action="/api/project/create"
       method="POST">
   <label for="title">Title</label>
-  <input type="text" name="title" bind:value={previewProject.title}>
+  <input type="text" name="title" required>
 
-  <label for="description">Description</label>
-  <textarea name="description" rows="2" height="1em" bind:value={previewProject.description}/>
+  <label for="description" required>Description</label>
+  <textarea name="description" rows="2" height="1em"/>
 
   <label for="url">URL</label>
-  <input type="text" name="url" bind:value={previewProject.url}>
-  
+  <input type="text" name="url" required pattern="https?:\/\/.*" />
+
   <label for="show">
     Show this item? 
-    <input type="checkbox" name="show" bind:checked={previewProject.show}>
+    <input type="checkbox" name="show" checked={true}/>
   </label>
+
+  <label for="color">
+    Color:
+    <div class="color-preview" style="background-color: {color};"></div>
+    <select bind:value={color} name="color" >
+      {#each colors as colorOption}
+        <option value={colorOption}>{colorOption}</option>
+      {/each}
+    </select>
+  </label>
+  
   
   <!-- Image upload -->
   <label for="image">Upload an image</label>
@@ -45,6 +54,7 @@
     type="file" 
     name="image" 
     accept=".jpg, .jpeg, .png"
+    required
     bind:files
   >
 
@@ -69,6 +79,16 @@
       margin: 10px auto 0 auto;
       padding: 2px;
       cursor: pointer;
+    }
+    select {
+      display: inline;
+    }
+    .color-preview {
+      display: inline-block;
+      position:relative;
+      top: 3px;
+      height: 1em;
+      width: 1em;
     }
   }
 </style>
