@@ -51,7 +51,13 @@ export async function post(request) {
 
 // Save a given project to the file
 async function saveProjectData(body) {
-  const data = await readFile(dataFile);
+  let data;
+  try {
+    data = await readFile(dataFile);
+  } catch {
+    data = "[]";
+  }
+
   const projects = JSON.parse(data.toString());
 
   projects.push({

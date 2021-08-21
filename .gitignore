@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
 dist
+src/static/images/projects/*
+src/static/data/*
 package-lock.json
 .env
 .svelte-kit
