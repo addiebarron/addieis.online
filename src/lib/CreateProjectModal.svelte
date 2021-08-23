@@ -1,12 +1,7 @@
 <script>
-  import Project from "$lib/Project.svelte";
   import CreateProjectForm from "$lib/CreateProjectForm.svelte";
-
-  import { ProjectData } from '$lib/store';
   
   export let modal_show
-  
-  let previewProject = new ProjectData();
 </script>
 
 {#if modal_show}
@@ -16,7 +11,7 @@
       <button id="close-button" on:click={() => {modal_show = false}}>×</button>
 
       <!-- Project creation form -->
-      <CreateProjectForm bind:previewProject />
+      <CreateProjectForm />
 
     </div>
   </div>

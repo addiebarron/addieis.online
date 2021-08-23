@@ -4,14 +4,15 @@ const { writeFile, readFile } = fsPromises;
 import { removeDirIfExists } from "../_utils";
 
 // everything is relative to static
-const staticDir = "static/";
-const dataFile = staticDir + "data/projects.json";
+const staticDir = "static";
+const dataFile = staticDir + "/data/projects.json";
 
 export async function post(request) {
   const project = request.body;
 
   // Delete image
   const imageDir = staticDir + "/images/projects/" + project.id;
+  console.log(imageDir);
   await removeDirIfExists(imageDir);
 
   // Delete project from JSON

@@ -1,9 +1,16 @@
 <script context="module">
   export async function load({ fetch, page }) {
-    const res = await fetch("data/projects.json");
+    let projects = [];
+    try {
+      const res = await fetch("data/projects.json");
+      projects = res.ok ? await res.json() : [];
+    } catch {
+      console.log('No data file.')
+    }
+    
     return { 
       props: {
-        projects: await res.json(),
+        projects,
         sudo: page.query.has("sudo"),
       }
     };

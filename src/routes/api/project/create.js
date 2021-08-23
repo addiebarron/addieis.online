@@ -51,14 +51,13 @@ export async function post(request) {
 
 // Save a given project to the file
 async function saveProjectData(body) {
-  let data;
+  let projects = [];
   try {
-    data = await readFile(dataFile);
+    const data = await readFile(dataFile);
+    projects = JSON.parse(data.toString());
   } catch {
-    data = "[]";
+    console.log("Nonexistent or malformed data file.");
   }
-
-  const projects = JSON.parse(data.toString());
 
   projects.push({
     id: projectUUID,
