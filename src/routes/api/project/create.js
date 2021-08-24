@@ -9,18 +9,18 @@ import {
   makeDirIfNone,
 } from "../_utils";
 
-// this project's unique ID
-const projectUUID = nanoid();
-
 // filesystem actions are relative to static
 const staticDir = "static";
-// in the browser, static is served from /
-const imageLoc = `/images/projects/${projectUUID}/`;
-
-const uploadsDir = staticDir + imageLoc;
 const dataFile = staticDir + "/data/projects.json";
 
 export async function post(request) {
+  // this project's unique ID
+  const projectUUID = nanoid();
+  // in the browser, static is served from /
+  const imageLoc = `/images/projects/${projectUUID}/`;
+  const uploadsDir = staticDir + imageLoc;
+
+  // get the passed form data from the request body
   const body = getFormBody(request.body);
 
   // Upload Image
@@ -37,7 +37,7 @@ export async function post(request) {
 
   // Save to JSON file
   try {
-    await saveProjectData(body);
+    await saveProjectData(body, projectUUID);
   } catch (err) {
     await removeDirIfExists(uploadsDir);
     return serverError(err);
@@ -50,7 +50,7 @@ export async function post(request) {
 }
 
 // Save a given project to the file
-async function saveProjectData(body) {
+async function saveProjectData(body, id) {
   let projects = [];
   try {
     const data = await readFile(dataFile);
@@ -60,7 +60,7 @@ async function saveProjectData(body) {
   }
 
   projects.push({
-    id: projectUUID,
+    id,
     title: body.title,
     description: body.description,
     url: body.url,

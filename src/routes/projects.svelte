@@ -32,15 +32,21 @@
 
 <div class="projects">
   <div class="projects-grid">
-    {#each projects as project}
-      {#if project.show}
-        <Project {project} bind:sudo />
-      {/if}
-    {/each}
     {#if sudo}
       <button id="create-project-button" on:click={() => {modal_show = true}}>
         +
       </button>
+    {/if}
+    {#if projects.length}
+      {#each projects as project}
+        {#if project.show}
+          <Project {project} bind:sudo />
+        {/if}
+      {/each}
+    {:else}
+      <div class="placeholder">
+        No projects.
+      </div>
     {/if}
   </div>
 </div>
@@ -84,6 +90,14 @@
         color: grey;
         border-color: grey;
       }
+    }
+    .placeholder {
+      height: 250px;
+      background: rgba(0,0,0,0.1);
+      color: rgba(0,0,0,0.4);
+      padding-top: 32%;
+      line-height: 0;
+      text-align: center;
     }
   }
 </style>

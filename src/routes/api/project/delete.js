@@ -12,7 +12,6 @@ export async function post(request) {
 
   // Delete image
   const imageDir = staticDir + "/images/projects/" + project.id;
-  console.log(imageDir);
   await removeDirIfExists(imageDir);
 
   // Delete project from JSON

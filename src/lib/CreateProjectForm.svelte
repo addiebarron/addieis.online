@@ -37,17 +37,16 @@
     <input type="checkbox" name="show" checked={true}/>
   </label>
 
-  <label for="color">
-    Color:
-    <div class="color-preview" style="background-color: {color};"></div>
-    <select bind:value={color} name="color" >
-      {#each colors as colorOption}
-        <option value={colorOption}>{colorOption}</option>
-      {/each}
-    </select>
+  <label for="color" class="color-radio-group">
+    <span>Color:</span>
+    {#each colors as colorOption, i}
+      <label class="color-radio" for="color-radio-{i}">
+        <input id="color-radio-{i}" type="radio" name="color" value="{colorOption}" required/>
+        <div class="color-preview" style="background-color: {colorOption};"></div>
+      </label>
+    {/each}
   </label>
-  
-  
+
   <!-- Image upload -->
   <label for="image">Upload an image</label>
   <input 
@@ -59,7 +58,6 @@
   >
 
   <input type="hidden" name="imageBase64" bind:value={imageBase64}>
-
   <button type="submit">Create</button>
 </form>
 
@@ -69,6 +67,7 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+
     input, button, label, textarea {
       padding: 1px;
       margin: 2px 0;
@@ -83,12 +82,38 @@
     select {
       display: inline;
     }
-    .color-preview {
-      display: inline-block;
-      position:relative;
-      top: 3px;
-      height: 1em;
-      width: 1em;
-    }
+
+    label.color-radio-group {
+      display: flex;
+      span {
+        padding-right: 10px;
+        transform: translateY(25%);
+      }
+      label.color-radio {
+        position: relative;
+        cursor: pointer;
+        height: 2em;
+        flex: 1;
+        input {
+          opacity: 0;
+          &:checked + .color-preview {
+            border: solid 1px black;
+          }
+          &:not(:checked) + .color-preview {
+            opacity: 0.5;
+          }
+        }
+        .color-preview {
+          display: inline-block;
+          position: absolute;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          &:hover {
+            border: solid 1px grey;
+          }
+        } 
+      }
+    }    
   }
 </style>
