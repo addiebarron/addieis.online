@@ -53,9 +53,10 @@
     @include shad;
     border: solid 1px black;
     overflow: hidden;
-    // &:hover img.background.loaded {
-    //   opacity: 1;
-    // }
+    &:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 14px 14px black;
+    }
     width: min(100%, 375px);
     background-size: cover;
     background-blend-mode: multiply;
