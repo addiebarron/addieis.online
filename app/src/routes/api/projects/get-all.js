@@ -1,4 +1,3 @@
-import { Client as PostgresClient } from "pg";
 import { serverError } from "../_utils";
 import db from "../_db";
 
