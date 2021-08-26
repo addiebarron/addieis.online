@@ -3,7 +3,7 @@ const { Client } = pkg;
 
 export default {
   async query(text, params) {
-    const client = new PostgresClient();
+    const client = new Client();
     await client.connect();
     let error;
     try {

@@ -10,6 +10,9 @@
       console.log("No data file.");
     }
 
+    // show newest first
+    projects = projects.reverse();
+
     return {
       props: {
         projects,

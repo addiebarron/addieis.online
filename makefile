@@ -1,3 +1,5 @@
+.PHONY: build prod dev down shell
+
 build:
 	@docker-compose build
 prod: 
