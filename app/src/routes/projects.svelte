@@ -2,17 +2,19 @@
   export async function load({ fetch, page }) {
     let projects = [];
     try {
-      const res = await fetch("data/projects.json");
+      const res = await fetch("/api/projects/get-all", {
+        method: "GET",
+      });
       projects = res.ok ? await res.json() : [];
     } catch {
-      console.log('No data file.')
+      console.log("No data file.");
     }
-    
-    return { 
+
+    return {
       props: {
         projects,
         sudo: page.query.has("sudo"),
-      }
+      },
     };
   }
 </script>
@@ -23,7 +25,7 @@
 
   export let projects, sudo;
 
-  let modal_show = false; 
+  let modal_show = false;
 </script>
 
 <svelte:head>
@@ -33,7 +35,12 @@
 <div class="projects">
   <div class="projects-grid">
     {#if sudo}
-      <button id="create-project-button" on:click={() => {modal_show = true}}>
+      <button
+        id="create-project-button"
+        on:click={() => {
+          modal_show = true;
+        }}
+      >
         +
       </button>
     {/if}
@@ -44,9 +51,7 @@
         {/if}
       {/each}
     {:else}
-      <div class="placeholder">
-        No projects.
-      </div>
+      <div class="placeholder">No projects.</div>
     {/if}
   </div>
 </div>
@@ -93,8 +98,8 @@
     }
     .placeholder {
       height: 250px;
-      background: rgba(0,0,0,0.1);
-      color: rgba(0,0,0,0.4);
+      background: rgba(0, 0, 0, 0.1);
+      color: rgba(0, 0, 0, 0.4);
       padding-top: 32%;
       line-height: 0;
       text-align: center;

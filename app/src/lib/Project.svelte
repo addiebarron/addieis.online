@@ -1,40 +1,47 @@
 <script>
-  import {colors} from "$lib/store";
-
   export let project, sudo;
 
-  async function deleteThisProject () {
+  async function deleteThisProject() {
     if (!confirm(`Are you sure you want to delete "${project.title}"?`)) return;
 
-    const res = await fetch("/api/project/delete", {
+    const res = await fetch("/api/projects/delete", {
       method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(project),
-    })
+      body: JSON.stringify({ id: project.id }),
+    });
 
     if (res.ok) {
       window.location = res.url;
     } else {
-      console.log(res)
+      console.log(res);
     }
   }
 </script>
 
-<div class="project" style="background-color: {project.color}; background-image: url('{project.imageSrc || "/images/placeholder.png"}');">
+<div
+  class="project"
+  style="background-color: {project.color}; background-image: url('{project.imagesrc || '/images/placeholder.png'}');"
+>
   <a href={project.url} target="blank" class="rect">
     <!-- <img
       alt={project.title}
       class="backgrcolors[Math.floor(Math.random()*colors.length)ound"
-      src={project.imageSrc || "/images/placeholder.png"}/> -->
-    <div class="text title"><span>{project.title ? project.title.toLowerCase() : ""}</span></div>
+      src={project.imagesrc || "/images/placeholder.png"}/> -->
+    <div class="text title">
+      <span>{project.title ? project.title.toLowerCase() : ''}</span>
+    </div>
     <div class="text description">
-      <span>{project.description ? project.description.toLowerCase() : ""}</span>
+      <span
+      >{project.description ? project.description.toLowerCase() : ''}</span>
     </div>
   </a>
   {#if sudo}
-    <button class="project-delete-button" on:click={deleteThisProject}>×</button>
+    <button
+      class="project-delete-button"
+      on:click={deleteThisProject}
+    >×</button>
   {/if}
 </div>
 
@@ -42,7 +49,7 @@
   @import "../styles/theme";
 
   .project {
-    position:relative;
+    position: relative;
     @include shad;
     border: solid 1px black;
     overflow: hidden;
@@ -99,8 +106,8 @@
     }
     .project-delete-button {
       position: absolute;
-      top:15px;
-      right:15px;
+      top: 15px;
+      right: 15px;
       width: 30px;
       height: 30px;
       font-size: 20px;
@@ -110,7 +117,7 @@
       cursor: pointer;
       &:hover {
         background: rgb(255, 134, 134);
-        color:white;
+        color: white;
       }
     }
   }
