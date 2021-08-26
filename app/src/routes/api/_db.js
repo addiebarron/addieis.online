@@ -1,4 +1,5 @@
-import { Client as PostgresClient } from "pg";
+import pkg from "pg";
+const { Client } = pkg;
 
 export default {
   async query(text, params) {

@@ -7,4 +7,4 @@ dev:
 down:
 	@docker-compose down
 shell:
-	@docker exec -it covidviz_web_1 bash
+	@docker exec -it addieisonline_web_1 bash
