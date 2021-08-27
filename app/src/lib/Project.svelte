@@ -1,4 +1,6 @@
 <script>
+  //import { colors } from "$lib/store";
+
   export let project, sudo;
 
   async function deleteThisProject() {
@@ -18,6 +20,8 @@
       console.log(res);
     }
   }
+
+  //project.color = colors[Math.floor(Math.random() * colors.length)];
 </script>
 
 <div
@@ -25,10 +29,6 @@
   style="background-color: {project.color}; background-image: url('{project.imagesrc || '/images/placeholder.png'}');"
 >
   <a href={project.url} target="blank" class="rect">
-    <!-- <img
-      alt={project.title}
-      class="backgrcolors[Math.floor(Math.random()*colors.length)ound"
-      src={project.imagesrc || "/images/placeholder.png"}/> -->
     <div class="text title">
       <span>{project.title ? project.title.toLowerCase() : ''}</span>
     </div>
@@ -65,16 +65,6 @@
       position: relative;
       height: 250px;
       width: 100%;
-      // img.background {
-      //   display: block;
-      //   width: 100%;
-      //   height: 250px;
-      //   object-fit: cover; // no ie
-      //   object-position: center; // no ie
-      //   //opacity: 0.75;
-      //   //@include filter(saturate(60%));
-      //   //@include transition(opacity);
-      // }
       .text {
         position: absolute;
         left: 0;
@@ -96,12 +86,6 @@
           bottom: 0;
           line-height: 1.2em;
           font-style: italic;
-        }
-      }
-
-      &:hover {
-        & .background {
-          border-width: 2px;
         }
       }
     }

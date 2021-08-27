@@ -81,9 +81,7 @@
           grid-template-columns: 1fr;
         }
       }
-      //justify-content: center;
       gap: $grid-gap;
-      max-width: 1520px;
       padding-bottom: 30px;
     }
     #create-project-button {

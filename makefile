@@ -3,9 +3,9 @@
 build:
 	@docker-compose build
 prod: 
-	@docker-compose up -d
+	@docker-compose up --build -d
 dev:
-	@docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+	@docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build -d
 down:
 	@docker-compose down
 shell:

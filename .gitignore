@@ -5,4 +5,4 @@ build
 src/static/images/projects/*
 src/static/data/*
 package-lock.json
-.env
+.env*
