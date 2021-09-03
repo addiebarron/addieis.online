@@ -17,6 +17,7 @@
       props: {
         projects,
         sudo: page.query.has("sudo"),
+        success: page.query.get("success"),
       },
     };
   }
@@ -25,10 +26,24 @@
 <script>
   import Project from "$lib/Project.svelte";
   import CreateProjectModal from "$lib/CreateProjectModal.svelte";
+  import { onMount } from "svelte";
+  import { fade } from "svelte/transition";
 
-  export let projects, sudo;
+  export let projects, sudo, success;
 
   let modal_show = false;
+  let success_show = true;
+
+  onMount(() => {
+    setTimeout(() => {
+      success_show = false;
+      window.history.replaceState(
+        {},
+        document.title,
+        `/projects${sudo ? "?sudo" : ""}`
+      );
+    }, 1000);
+  });
 </script>
 
 <svelte:head>
@@ -36,6 +51,9 @@
 </svelte:head>
 
 <div class="projects">
+  {#if success && success_show}
+    <div out:fade class="success">Successful {success}.</div>
+  {/if}
   <div class="projects-grid">
     {#if sudo}
       <button
@@ -71,6 +89,17 @@
     height: 100%;
     width: 100%;
     padding: $grid-gap;
+
+    .success {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      padding: 10px;
+      text-align: center;
+      border-radius: 5px;
+      background: rgb(39, 228, 39);
+      color: white;
+    }
 
     .projects-grid {
       width: 100%;

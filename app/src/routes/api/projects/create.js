@@ -1,13 +1,10 @@
 import { nanoid } from "nanoid";
-import { v2 as cloudinary } from "cloudinary";
 
 import { getFormBody, serverError } from "../_utils";
 import { idLength } from "./_schema";
-import db from "../_db";
 
-cloudinary.config({
-  secure: true,
-});
+import cdn from "../_cdn";
+import db from "../_db";
 
 export async function post(request) {
   // This project's unique ID
@@ -18,15 +15,9 @@ export async function post(request) {
   // Upload Image
   try {
     // query cloudinary
-    const options = {
-      public_id: id,
-      eager: ["t_projects"],
-    };
-    await cloudinary.uploader.upload(body.imageBase64, options);
+    await cdn.uploadProject(body.imageBase64, id);
     // set project image src
-    body.imagesrc = cloudinary.url(id, {
-      transformation: ["projects"],
-    });
+    body.imagesrc = await cdn.projectURL(id);
   } catch (err) {
     return serverError(err);
   }
@@ -57,6 +48,6 @@ export async function post(request) {
 
   return {
     status: 301,
-    headers: { Location: "/projects?sudo&success" },
+    headers: { Location: "/projects?sudo&success=create" },
   };
 }

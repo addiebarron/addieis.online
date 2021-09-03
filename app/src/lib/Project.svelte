@@ -1,6 +1,4 @@
 <script>
-  //import { colors } from "$lib/store";
-
   export let project, sudo;
 
   async function deleteThisProject() {
@@ -20,13 +18,11 @@
       console.log(res);
     }
   }
-
-  //project.color = colors[Math.floor(Math.random() * colors.length)];
 </script>
 
 <div
   class="project"
-  style="background-color: {project.color}; background-image: url('{project.imagesrc || '/images/placeholder.png'}');"
+  style="background-image: url('{project.imagesrc || '/images/placeholder.png'}');"
 >
   <a href={project.url} target="blank" class="rect">
     <div class="text title">
@@ -53,13 +49,15 @@
     @include shad;
     border: solid 1px black;
     overflow: hidden;
+    width: min(100%, 375px);
+    background-color: pink;
+    background-size: cover;
+    background-blend-mode: multiply;
     &:hover {
       transform: translate(-2px, -2px);
       box-shadow: 14px 14px black;
+      background-color: white;
     }
-    width: min(100%, 375px);
-    background-size: cover;
-    background-blend-mode: multiply;
     a.rect {
       display: block;
       position: relative;
@@ -79,6 +77,8 @@
 
         &.title {
           top: 0;
+          font-size: 1.6em;
+          font-weight: bold;
           word-break: break-all;
         }
 
