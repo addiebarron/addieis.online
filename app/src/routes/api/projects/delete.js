@@ -1,13 +1,14 @@
 import { v2 as cloudinary } from "cloudinary";
 import { serverError } from "../_utils";
 import db from "../_db";
+import cdn from "../_cdn";
 
 export async function post(request) {
   const { id } = request.body;
 
   // Delete image from CDN
   try {
-    const res = await cloudinary.uploader.destroy(id);
+    await cdn.destroy(id);
   } catch (err) {
     console.log(err);
     return serverError(err);
@@ -24,6 +25,6 @@ export async function post(request) {
 
   return {
     status: 301,
-    headers: { Location: "/projects?success&sudo" },
+    headers: { Location: "/projects?sudo&success=delete" },
   };
 }

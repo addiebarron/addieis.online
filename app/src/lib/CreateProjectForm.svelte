@@ -1,5 +1,4 @@
 <script>
-  import { colors } from "$lib/store";
   import { maxTitleLength } from "../routes/api/projects/_schema";
 
   let files, imageInput, imageBase64;
@@ -67,7 +66,7 @@
     <input type="checkbox" name="show" checked={true} />
   </label>
 
-  <label for="color" class="color-radio-group">
+  <!-- <label for="color" class="color-radio-group">
     <span>Color:</span>
     {#each colors as colorOption, i}
       <label class="color-radio" for="color-radio-{i}">
@@ -81,7 +80,7 @@
         <div class="color-preview" style="background-color: {colorOption};" />
       </label>
     {/each}
-  </label>
+  </label> -->
 
   <!-- Image upload -->
   <label for="image">Upload an image</label>
