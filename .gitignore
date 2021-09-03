@@ -2,7 +2,5 @@
 .svelte-kit
 node_modules
 build
-src/static/images/projects/*
-src/static/data/*
 package-lock.json
-.env
+.env*

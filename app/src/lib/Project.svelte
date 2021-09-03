@@ -1,40 +1,47 @@
 <script>
-  import {colors} from "$lib/store";
+  //import { colors } from "$lib/store";
 
   export let project, sudo;
 
-  async function deleteThisProject () {
+  async function deleteThisProject() {
     if (!confirm(`Are you sure you want to delete "${project.title}"?`)) return;
 
-    const res = await fetch("/api/project/delete", {
+    const res = await fetch("/api/projects/delete", {
       method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(project),
-    })
+      body: JSON.stringify({ id: project.id }),
+    });
 
     if (res.ok) {
       window.location = res.url;
     } else {
-      console.log(res)
+      console.log(res);
     }
   }
+
+  //project.color = colors[Math.floor(Math.random() * colors.length)];
 </script>
 
-<div class="project" style="background-color: {project.color}; background-image: url('{project.imageSrc || "/images/placeholder.png"}');">
+<div
+  class="project"
+  style="background-color: {project.color}; background-image: url('{project.imagesrc || '/images/placeholder.png'}');"
+>
   <a href={project.url} target="blank" class="rect">
-    <!-- <img
-      alt={project.title}
-      class="backgrcolors[Math.floor(Math.random()*colors.length)ound"
-      src={project.imageSrc || "/images/placeholder.png"}/> -->
-    <div class="text title"><span>{project.title ? project.title.toLowerCase() : ""}</span></div>
+    <div class="text title">
+      <span>{project.title ? project.title.toLowerCase() : ''}</span>
+    </div>
     <div class="text description">
-      <span>{project.description ? project.description.toLowerCase() : ""}</span>
+      <span
+      >{project.description ? project.description.toLowerCase() : ''}</span>
     </div>
   </a>
   {#if sudo}
-    <button class="project-delete-button" on:click={deleteThisProject}>×</button>
+    <button
+      class="project-delete-button"
+      on:click={deleteThisProject}
+    >×</button>
   {/if}
 </div>
 
@@ -42,13 +49,14 @@
   @import "../styles/theme";
 
   .project {
-    position:relative;
+    position: relative;
     @include shad;
     border: solid 1px black;
     overflow: hidden;
-    // &:hover img.background.loaded {
-    //   opacity: 1;
-    // }
+    &:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 14px 14px black;
+    }
     width: min(100%, 375px);
     background-size: cover;
     background-blend-mode: multiply;
@@ -57,16 +65,6 @@
       position: relative;
       height: 250px;
       width: 100%;
-      // img.background {
-      //   display: block;
-      //   width: 100%;
-      //   height: 250px;
-      //   object-fit: cover; // no ie
-      //   object-position: center; // no ie
-      //   //opacity: 0.75;
-      //   //@include filter(saturate(60%));
-      //   //@include transition(opacity);
-      // }
       .text {
         position: absolute;
         left: 0;
@@ -90,17 +88,11 @@
           font-style: italic;
         }
       }
-
-      &:hover {
-        & .background {
-          border-width: 2px;
-        }
-      }
     }
     .project-delete-button {
       position: absolute;
-      top:15px;
-      right:15px;
+      top: 15px;
+      right: 15px;
       width: 30px;
       height: 30px;
       font-size: 20px;
@@ -110,7 +102,7 @@
       cursor: pointer;
       &:hover {
         background: rgb(255, 134, 134);
-        color:white;
+        color: white;
       }
     }
   }

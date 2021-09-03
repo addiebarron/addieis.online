@@ -1,66 +1,102 @@
 <script>
-  import {colors} from "$lib/store"
+  import { colors } from "$lib/store";
+  import { maxTitleLength } from "../routes/api/projects/_schema";
 
-  let files, imageBase64, color;
+  let files, imageInput, imageBase64;
 
-  function handleImageSelect (image) {
+  const dev = import.meta.env.DEV;
+
+  function handleImageSelect(image) {
+    // Restrict to 60MB or less (VERY rare but would break cloudinary base64 upload)
+    let size = (image.size / 1024 ** 2).toFixed(4); // MB
+    if (size >= 60) {
+      imageInput.value = "";
+      files = [];
+      alert("Please choose an image less than 60MB.");
+      return;
+    }
+    // Read into a base64 URL and set as hidden input value;
     const reader = new FileReader();
     reader.onload = async (e) => {
-      imageBase64 = e.target.result.split(',')[1];
+      imageBase64 = e.target.result;
     };
     reader.readAsDataURL(image);
-  };
-
-  async function handleFormSubmit(e) {
-    e.target.elements['image'].disabled = true;
   }
 
-  $: if (files) handleImageSelect(files[0])
+  async function handleFormSubmit(e) {
+    e.target.elements["image"].disabled = true;
+  }
 
+  $: if (files) handleImageSelect(files[0]);
 </script>
 
-<form id="project-form"
-      on:submit={handleFormSubmit}
-      action="/api/project/create"
-      method="POST">
+<form
+  id="project-form"
+  on:submit={handleFormSubmit}
+  action="/api/projects/create"
+  method="POST"
+>
   <label for="title">Title</label>
-  <input type="text" name="title" required>
+  <input
+    type="text"
+    name="title"
+    value={dev ? 'test title' : ''}
+    maxlength={maxTitleLength}
+    required
+  />
 
   <label for="description" required>Description</label>
-  <textarea name="description" rows="2" height="1em"/>
+  <textarea
+    name="description"
+    rows="2"
+    height="1em"
+    value={dev ? 'test description' : ''}
+  />
 
   <label for="url">URL</label>
-  <input type="text" name="url" required pattern="https?:\/\/.*" />
+  <input
+    type="text"
+    name="url"
+    value={dev ? 'https://addieis.online' : ''}
+    required
+    pattern="https?:\/\/.*"
+  />
 
   <label for="show">
-    Show this item? 
-    <input type="checkbox" name="show" checked={true}/>
+    Show this item?
+    <input type="checkbox" name="show" checked={true} />
   </label>
 
   <label for="color" class="color-radio-group">
     <span>Color:</span>
     {#each colors as colorOption, i}
       <label class="color-radio" for="color-radio-{i}">
-        <input id="color-radio-{i}" type="radio" name="color" value="{colorOption}" required/>
-        <div class="color-preview" style="background-color: {colorOption};"></div>
+        <input
+          id="color-radio-{i}"
+          type="radio"
+          name="color"
+          value={colorOption}
+          required
+        />
+        <div class="color-preview" style="background-color: {colorOption};" />
       </label>
     {/each}
   </label>
 
   <!-- Image upload -->
   <label for="image">Upload an image</label>
-  <input 
-    type="file" 
-    name="image" 
+  <input
+    type="file"
+    name="image"
     accept=".jpg, .jpeg, .png"
     required
+    bind:this={imageInput}
     bind:files
-  >
+  />
 
-  <input type="hidden" name="imageBase64" bind:value={imageBase64}>
+  <input type="hidden" name="imageBase64" bind:value={imageBase64} />
   <button type="submit">Create</button>
 </form>
-
 
 <style lang="scss">
   #project-form {
@@ -68,7 +104,10 @@
     flex-direction: column;
     margin-bottom: 20px;
 
-    input, button, label, textarea {
+    input,
+    button,
+    label,
+    textarea {
       padding: 1px;
       margin: 2px 0;
       resize: none;
@@ -112,8 +151,8 @@
           &:hover {
             border: solid 1px grey;
           }
-        } 
+        }
       }
-    }    
+    }
   }
 </style>
