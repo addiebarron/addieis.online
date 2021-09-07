@@ -34,15 +34,19 @@ export async function post(request) {
   };
 
   // Save to DB
-  const keys = Object.keys(project).join(",");
-  const values = Object.values(project);
-  const valParams = values.map((_, i) => "$" + (i + 1)).join(",");
-  const text = `INSERT INTO projects(${keys}) VALUES(${valParams}) RETURNING *;`;
+  const keys = Object.keys(project);
+  const vals = Object.values(project);
+  // Escape identifiers to avoid SQL injection
+  const identifiers = db.identifiers(keys.length);
+  const placeholders = db.placeholders(vals.length);
+  const template = `INSERT INTO projects(${identifiers}) VALUES(${placeholders}) RETURNING *;`;
+  const text = db.format(template, ...keys);
   try {
-    await db.query(text, values);
+    // Parameters are escaped here (in pg.Client.query)
+    await db.query(text, vals);
   } catch (err) {
-    // delete the image from cloudinary
-    await cloudinary.uploader.destroy(id);
+    // On error, delete the uploaded image from CDN
+    await cdn.destroy(id);
     return serverError(err);
   }
 

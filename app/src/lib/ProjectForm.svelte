@@ -1,10 +1,28 @@
 <script>
   import { maxTitleLength } from "../routes/api/projects/_schema";
 
+  // Create vs upload defaults
+  export let type,
+    project = null;
+
+  let creating = type == "create";
+
+  let defaults = { show: true };
+  if (type == "edit") {
+    // updating a project defaults
+    defaults = project;
+  } else if (type == "create" && import.meta.env.DEV) {
+    // testing defaults
+    defaults = {
+      title: "test title",
+      description: "test description",
+      url: "https://addieis.online",
+      show: true,
+    };
+  }
+
+  // Image upload workaround (send raw base64 data)
   let files, imageInput, imageBase64;
-
-  const dev = import.meta.env.DEV;
-
   function handleImageSelect(image) {
     // Restrict to 60MB or less (VERY rare but would break cloudinary base64 upload)
     let size = (image.size / 1024 ** 2).toFixed(4); // MB
@@ -32,16 +50,16 @@
 <form
   id="project-form"
   on:submit={handleFormSubmit}
-  action="/api/projects/create"
+  action="/api/projects/{type}"
   method="POST"
 >
   <label for="title">Title</label>
   <input
     type="text"
     name="title"
-    value={dev ? 'test title' : ''}
+    value={defaults.title}
     maxlength={maxTitleLength}
-    required
+    required={creating || null}
   />
 
   <label for="description" required>Description</label>
@@ -49,21 +67,21 @@
     name="description"
     rows="2"
     height="1em"
-    value={dev ? 'test description' : ''}
+    value={defaults.description}
   />
 
   <label for="url">URL</label>
   <input
     type="text"
     name="url"
-    value={dev ? 'https://addieis.online' : ''}
-    required
+    value={defaults.url}
+    required={creating || null}
     pattern="https?:\/\/.*"
   />
 
   <label for="show">
     Show this item?
-    <input type="checkbox" name="show" checked={true} />
+    <input type="checkbox" name="show" checked={defaults.show} />
   </label>
 
   <!-- <label for="color" class="color-radio-group">
@@ -88,13 +106,14 @@
     type="file"
     name="image"
     accept=".jpg, .jpeg, .png"
-    required
+    required={creating || null}
     bind:this={imageInput}
     bind:files
   />
 
   <input type="hidden" name="imageBase64" bind:value={imageBase64} />
-  <button type="submit">Create</button>
+  <input type="hidden" name="id" value={project?.id} />
+  <button type="submit">{type}</button>
 </form>
 
 <style lang="scss">

@@ -25,25 +25,59 @@
 
 <script>
   import Project from "$lib/Project.svelte";
-  import CreateProjectModal from "$lib/CreateProjectModal.svelte";
+  import ProjectModal from "$lib/ProjectModal.svelte";
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
 
   export let projects, sudo, success;
 
-  let modal_show = false;
-  let success_show = true;
+  // This object is bound to the state of the modal
+  let modalOptions = {
+    show: false,
+  };
 
-  onMount(() => {
-    setTimeout(() => {
-      success_show = false;
-      window.history.replaceState(
-        {},
-        document.title,
-        `/projects${sudo ? "?sudo" : ""}`
-      );
-    }, 1000);
-  });
+  let showSuccessMessage = true;
+  // Remove successMessage after 1 second
+  function removeSuccessMessage() {
+    showSuccessMessage = false;
+    window.history.replaceState(
+      {},
+      document.title,
+      `/projects${sudo ? "?sudo" : ""}`
+    );
+  }
+  onMount(() => setTimeout(removeSuccessMessage, 1000));
+
+  function showModal(type, project) {
+    modalOptions = {
+      show: true,
+      type: type,
+      project: project || null,
+    };
+  }
+  function hideModal() {
+    modalOptions = {
+      show: false,
+    };
+  }
+
+  async function deleteProject(id) {
+    if (!confirm(`Are you sure you want to delete this project?`)) return;
+
+    const res = await fetch("/api/projects/delete", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id }),
+    });
+
+    if (res.ok) {
+      window.location = res.url;
+    } else {
+      console.log(res);
+    }
+  }
 </script>
 
 <svelte:head>
@@ -51,24 +85,24 @@
 </svelte:head>
 
 <div class="projects">
-  {#if success && success_show}
+  {#if success && showSuccessMessage}
     <div out:fade class="success">Successful {success}.</div>
   {/if}
   <div class="projects-grid">
     {#if sudo}
-      <button
-        id="create-project-button"
-        on:click={() => {
-          modal_show = true;
-        }}
-      >
+      <button id="create-project-button" on:click={() => showModal('create')}>
         +
       </button>
     {/if}
     {#if projects.length}
       {#each projects as project}
-        {#if project.show}
-          <Project {project} bind:sudo />
+        {#if project.show || sudo}
+          <Project
+            {project}
+            bind:sudo
+            on:edit={() => showModal('edit', project)}
+            on:delete={() => deleteProject(project.id)}
+          />
         {/if}
       {/each}
     {:else}
@@ -76,8 +110,9 @@
     {/if}
   </div>
 </div>
-
-<CreateProjectModal bind:modal_show />
+{#if modalOptions.show}
+  <ProjectModal bind:modalOptions on:close={hideModal} />
+{/if}
 
 <style lang="scss">
   @import "../styles/theme";

@@ -1,4 +1,3 @@
-import { v2 as cloudinary } from "cloudinary";
 import { serverError } from "../_utils";
 import db from "../_db";
 import cdn from "../_cdn";
