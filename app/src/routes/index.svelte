@@ -18,24 +18,22 @@
     <div class="text">
       <h1>hi! i'm addie</h1>
       <p>
-        i'm a self-taught web programmer and technologist currently attending
-        the
+        i'm a self-taught web programmer and technologist. i am currently
+        studying at the
         <a href="https://recurse.com">Recurse Center</a>.
       </p>
       <p>
-        my work is mostly in javascript and python. i have experience with full
-        stack node & django apps, web extensions, and svelte sites. this site
-        was built in
-        <a target="_blank" href="https://svelte.dev">Svelte</a>
-        and
+        my work is mostly in javascript and python. i have experience buidling
+        full-stack applications, particularly using svelte, django, and
+        postgres. this site was built using
         <a target="_blank" href="https://sapper.svelte.dev">SvelteKit</a>.
       </p>
       <p>
-        i'm interested in radical networks, web communities, decentralization,
-        gardens, and weird digital art.
+        i'm fascinated by networking, web communities, decentralization,
+        gardening, and outsider art.
       </p>
       <p>
-        currently building a community mesh network with
+        currently building community-owned internet infrastructure with
         <a target="_blank" href="https://phillycommunitywireless.org">Philly
           Community Wireless</a>.
       </p>
