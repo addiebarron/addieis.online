@@ -65,6 +65,10 @@
           display: flex;
           width: 100%;
           height: 100%;
+          &:focus {
+            outline: dashed 2px black;
+            outline-offset: -0.6rem;
+          }
           span {
             margin: auto; // easy centering
           }
@@ -73,6 +77,10 @@
           a > span {
             @include underline(4px, #ddd);
           }
+        }
+        &:focus {
+          outline: dashed 2px black;
+          outline-offset: -0.6rem;
         }
         &[aria-current] {
           position: relative;

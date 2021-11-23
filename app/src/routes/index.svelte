@@ -78,6 +78,11 @@
     }
     .about-me {
       font-size: 18px;
+      a:focus {
+        color: black;
+        outline: dashed 2px black;
+        outline-offset: 5px;
+      }
       .text {
         margin: auto;
         padding-bottom: 10px;

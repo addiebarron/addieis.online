@@ -6,41 +6,51 @@
   export let project, sudo;
 </script>
 
-<div
+<li
   class="project"
   class:greyed={!project.show}
-  style="background-image: url('{project.imagesrc ||
-    '/images/placeholder.png'}');"
+  style="background-image: url('{project.imagesrc || '/images/placeholder.png'}');"
 >
-  <a href={project.url} target="blank" class="rect">
-    <div class="text title">
-      <span>{project.title ? project.title.toLowerCase() : ""}</span>
-    </div>
-    <div class="text description">
-      <span>{project.description ? project.description.toLowerCase() : ""}</span
-      >
-    </div>
-  </a>
+  <h2 class="project-text">
+    <a
+      href={project.url}
+      target="_blank"
+      rel="noopener"
+    >{project.title ? project.title.toLowerCase() : ''}</a>
+  </h2>
+  <p class="project-text">
+    <span>{project.description ? project.description.toLowerCase() : ''}</span>
+  </p>
   {#if sudo}
     <div class="project-buttons">
-      <button class="edit" on:click={() => dispatch("edit")}>✎</button>
-      <button class="delete" on:click={() => dispatch("delete")}>×</button>
+      <button class="edit" on:click={() => dispatch('edit')}>✎</button>
+      <button class="delete" on:click={() => dispatch('delete')}>×</button>
     </div>
   {/if}
-</div>
+</li>
 
 <style lang="scss">
   @import "../styles/theme";
 
   .project {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     position: relative;
+    height: 250px;
+    min-width: 100%;
+    max-width: 375px;
+    padding: 20px;
+    overflow: hidden;
     @include shad;
     border: solid 1px black;
-    overflow: hidden;
-    width: min(100%, 375px);
     background-color: pink;
     background-size: cover;
     background-blend-mode: multiply;
+    &:focus-within {
+      outline: dashed 2px black;
+      outline-offset: -0.6rem;
+    }
     &:hover {
       transform: translate(-2px, -2px);
       box-shadow: 14px 14px black;
@@ -49,39 +59,24 @@
     &.greyed {
       opacity: 0.5;
     }
-    a.rect {
-      display: block;
-      position: relative;
-      height: 250px;
-      width: 100%;
-      .text {
+    .project-text {
+      line-height: 1.2em;
+      & > * {
+        background-color: white;
+        padding: 0 5px;
+        border: solid 1px $border-color;
+      }
+      a::after {
         position: absolute;
+        content: "";
+        top: 0;
         left: 0;
-        padding: 20px;
-        span {
-          display: inline-block;
-          background-color: white;
-          padding: 0 5px;
-          line-height: 1.2em;
-          border: solid 1px $border-color;
-        }
-
-        &.title {
-          top: 0;
-          font-size: 1.4em;
-          font-weight: bold;
-          word-break: break-all;
-        }
-
-        &.description {
-          bottom: 0;
-          line-height: 1.2em;
-          font-style: italic;
-        }
+        bottom: 0;
+        right: 0;
       }
     }
 
-    .project-buttons {
+    div.project-buttons {
       position: absolute;
       top: 15px;
       right: 15px;
@@ -95,8 +90,13 @@
         background: white;
         cursor: pointer;
         &:hover {
-          background: rgb(255, 134, 134);
           color: white;
+        }
+        &.edit:hover {
+          background: rgb(56, 216, 69);
+        }
+        &.delete:hover {
+          background: rgb(255, 134, 134);
         }
       }
     }

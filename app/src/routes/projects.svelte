@@ -88,7 +88,7 @@
   {#if success && showSuccessMessage}
     <div out:fade class="success">Successful {success}.</div>
   {/if}
-  <div class="projects-grid">
+  <ul class="projects-grid">
     {#if sudo}
       <button id="create-project-button" on:click={() => showModal('create')}>
         +
@@ -108,7 +108,7 @@
     {:else}
       <div class="placeholder">No projects.</div>
     {/if}
-  </div>
+  </ul>
 </div>
 {#if modalOptions.show}
   <ProjectModal bind:modalOptions on:close={hideModal} />
@@ -119,13 +119,13 @@
 
   $grid-gap: 40px;
 
-  .projects {
+  div.projects {
     overflow-y: scroll;
     height: 100%;
     width: 100%;
     padding: $grid-gap;
 
-    .success {
+    div.success {
       position: fixed;
       top: 15px;
       right: 15px;
@@ -136,7 +136,10 @@
       color: white;
     }
 
-    .projects-grid {
+    ul.projects-grid {
+      list-style: none;
+      margin: 0;
+      padding: 0;
       width: 100%;
       display: grid;
       grid-template-columns: repeat(auto-fit, 375px);

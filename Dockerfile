@@ -6,5 +6,5 @@ COPY app/ .
 # Install dependencies
 RUN npm ci
 
-EXPOSE 3000
+EXPOSE 5000
 ENTRYPOINT ["sh", "app-entrypoint.sh"]
