@@ -16,26 +16,24 @@
   <div class="me" on:click={testAuth} />
   <div class="about-me">
     <div class="text">
-      <h1>hi! i'm addie</h1>
+      <h1>Hi! I'm Addie.</h1>
       <p>
-        i'm a self-taught web programmer and technologist. i am currently
-        studying at the
-        <a href="https://recurse.com">Recurse Center</a>.
+        I'm a software developer and internet technologist. I am currently
+        looking for work!
+        <a href="/resume">Take a look at my resume</a>.
       </p>
       <p>
-        my work is mostly in javascript and python. i have experience buidling
-        full-stack applications, particularly using svelte, django, and
-        postgres. this site was built using
-        <a target="_blank" href="https://sapper.svelte.dev">SvelteKit</a>.
+        My coding work is mostly in javascript and python. I have experience
+        building full-stack applications and static sites. This site was built
+        using
+        <a target="_blank" href="https://sapper.svelte.dev">SvelteKit</a>
+        and a custom NodeJS backend.
       </p>
       <p>
-        i'm fascinated by networking, web communities, decentralization,
-        gardening, and outsider art.
-      </p>
-      <p>
-        currently building community-owned internet infrastructure with
+        Outside of work, I lead the tech team at
         <a target="_blank" href="https://phillycommunitywireless.org">Philly
-          Community Wireless</a>.
+          Community Wireless</a>
+        to help build community-owned internet infrastructure.
       </p>
       <Socials />
     </div>

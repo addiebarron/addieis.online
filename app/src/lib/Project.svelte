@@ -41,16 +41,26 @@
     min-width: 100%;
     max-width: 375px;
     padding: 20px;
-    overflow: hidden;
     @include shad;
     border: solid 1px black;
     background-color: pink;
     background-size: cover;
     background-blend-mode: multiply;
-    &:focus-within {
-      outline: dashed 2px black;
-      outline-offset: -0.6rem;
+    // Hack for a focus indicator outline that includes box shadow
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: calc(100% + 10px);
+      height: calc(100% + 10px);
     }
+    &:focus-within:after {
+      outline: dashed 2px black;
+      outline-offset: 0.6rem;
+    }
+    // Hover indicator
     &:hover {
       transform: translate(-2px, -2px);
       box-shadow: 14px 14px black;
@@ -59,12 +69,14 @@
     &.greyed {
       opacity: 0.5;
     }
+
+    // Title and description
     .project-text {
-      line-height: 1.2em;
-      & > * {
+      & > span,
+      & > a {
+        line-height: 1.2em;
+        padding: 0.1em 0;
         background-color: white;
-        padding: 0 5px;
-        border: solid 1px $border-color;
       }
       a::after {
         position: absolute;
@@ -76,11 +88,13 @@
       }
     }
 
+    // Editing buttons
     div.project-buttons {
       position: absolute;
       top: 15px;
       right: 15px;
       height: 30px;
+      z-index: 2; // Make clickable above link hack
       button {
         width: 30px;
         height: 30px;
