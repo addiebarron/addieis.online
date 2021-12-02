@@ -51,6 +51,7 @@
       content: "";
       display: block;
       position: absolute;
+      pointer-events: none;
       top: 0;
       left: 0;
       width: calc(100% + 10px);
