@@ -29,6 +29,7 @@ export async function post(request) {
     description: body.description,
     url: body.url,
     color: body.color,
+    software: body.software,
     imagesrc: body.imagesrc,
     show: body.show,
   };

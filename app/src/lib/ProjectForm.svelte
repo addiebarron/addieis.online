@@ -3,11 +3,12 @@
 
   // Create vs upload defaults
   export let type,
+    software,
     project = null;
 
   let creating = type == "create";
 
-  let defaults = { show: true };
+  let defaults = { show: true, software };
   if (type == "edit") {
     // updating a project defaults
     defaults = project;
@@ -78,6 +79,10 @@
     required={creating || null}
     pattern="https?:\/\/.*"
   />
+  <label for="software">
+    Is this a software project?
+    <input type="checkbox" name="software" checked={defaults.software} />
+  </label>
 
   <label for="show">
     Show this item?

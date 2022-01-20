@@ -31,10 +31,20 @@
 
   export let projects, sudo, success;
 
-  // This object is bound to the state of the modal
-  let modalOptions = {
-    show: false,
-  };
+  // Projects list
+
+  let software = [];
+
+  // Filter by type
+  for (let i = 0; i < projects.length; i++) {
+    const project = projects[i];
+    if (projects.software) {
+      software.push(project);
+      projects.pop(i);
+    }
+  }
+
+  // Success / failure messages
 
   let showSuccessMessage = true;
   // Remove successMessage after 1 second
@@ -48,13 +58,22 @@
   }
   onMount(() => setTimeout(removeSuccessMessage, 1000));
 
-  function showModal(type, project) {
+  // Modal
+
+  // This object is bound to the state of the modal
+  let modalOptions = {
+    show: false,
+  };
+
+  function showModal(type, project, software) {
     modalOptions = {
       show: true,
       type: type,
       project: project || null,
+      software,
     };
   }
+
   function hideModal() {
     modalOptions = {
       show: false,
@@ -88,9 +107,10 @@
   {#if success && showSuccessMessage}
     <div out:fade class="success">Successful {success}.</div>
   {/if}
+  <h2>projects</h2>
   <ul class="projects-grid">
     {#if sudo}
-      <button id="create-project-button" on:click={() => showModal('create')}>
+      <button class="grid-item" on:click={() => showModal('create')}>
         +
       </button>
     {/if}
@@ -106,7 +126,32 @@
         {/if}
       {/each}
     {:else}
-      <div class="placeholder">No projects.</div>
+      <div class="placeholder grid-item">Nothing here.</div>
+    {/if}
+  </ul>
+  <h2>code</h2>
+  <ul class="projects-grid">
+    {#if sudo}
+      <button
+        class="grid-item"
+        on:click={() => showModal('create', { code: true })}
+      >
+        +
+      </button>
+    {/if}
+    {#if software.length}
+      {#each software as project}
+        {#if project.show || sudo}
+          <Project
+            {project}
+            bind:sudo
+            on:edit={() => showModal('edit', project)}
+            on:delete={() => deleteProject(project.id)}
+          />
+        {/if}
+      {/each}
+    {:else}
+      <div class="placeholder grid-item">Nothing here.</div>
     {/if}
   </ul>
 </div>
@@ -117,13 +162,19 @@
 <style lang="scss">
   @import "../styles/theme";
 
-  $grid-gap: 40px;
+  $grid-gap: 30px;
+  $grid-height: 200px;
+  $grid-width: 350px;
 
   div.projects {
     overflow-y: scroll;
     height: 100%;
     width: 100%;
     padding: $grid-gap;
+
+    h2 {
+      padding-bottom: 10px;
+    }
 
     div.success {
       position: fixed;
@@ -138,39 +189,43 @@
 
     ul.projects-grid {
       list-style: none;
-      margin: 0;
-      padding: 0;
-      width: 100%;
       display: grid;
-      grid-template-columns: repeat(auto-fit, 375px);
+      grid-template-columns: repeat(auto-fit, $grid-width);
+      grid-auto-rows: $grid-height;
+      gap: $grid-gap;
+      width: 100%;
+      margin: 0;
+      padding: 0 0 30px 0;
       @media only screen and (max-width: 450px) {
         & {
           grid-template-columns: 1fr;
         }
       }
-      gap: $grid-gap;
-      padding-bottom: 30px;
-    }
-    #create-project-button {
-      height: 250px;
-      font-size: 40px;
-      color: gainsboro;
-      cursor: pointer;
-      background-color: white;
-      border: solid 1px gainsboro;
-      border-radius: 10px;
-      &:hover {
-        color: grey;
-        border-color: grey;
+
+      .grid-item {
+        height: $grid-height;
+        max-width: $grid-width;
       }
-    }
-    .placeholder {
-      height: 250px;
-      background: rgba(0, 0, 0, 0.1);
-      color: rgba(0, 0, 0, 0.4);
-      padding-top: 32%;
-      line-height: 0;
-      text-align: center;
+
+      button {
+        font-size: 40px;
+        color: lightgray;
+        background-color: white;
+        border: solid 1px lightgray;
+        cursor: pointer;
+        &:hover {
+          color: grey;
+          border-color: grey;
+        }
+      }
+
+      .placeholder {
+        background: rgba(0, 0, 0, 0.1);
+        color: rgba(0, 0, 0, 0.4);
+        padding-top: 32%;
+        line-height: 0;
+        text-align: center;
+      }
     }
   }
 </style>

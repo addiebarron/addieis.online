@@ -11,13 +11,13 @@
   class:greyed={!project.show}
   style="background-image: url('{project.imagesrc || '/images/placeholder.png'}');"
 >
-  <h2 class="project-text">
+  <h3 class="project-text">
     <a
       href={project.url}
       target="_blank"
       rel="noopener"
     >{project.title ? project.title.toLowerCase() : ''}</a>
-  </h2>
+  </h3>
   <p class="project-text">
     <span>{project.description ? project.description.toLowerCase() : ''}</span>
   </p>
@@ -33,13 +33,11 @@
   @import "../styles/theme";
 
   .project {
+    // Flexbox
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    height: 250px;
-    min-width: 100%;
-    max-width: 375px;
     padding: 20px;
     @include shad;
     border: solid 1px black;
@@ -73,11 +71,14 @@
 
     // Title and description
     .project-text {
-      & > span,
-      & > a {
+      span,
+      a {
         line-height: 1.2em;
         padding: 0.1em 0;
         background-color: white;
+      }
+      span {
+        font-size: 0.9em;
       }
       a::after {
         position: absolute;

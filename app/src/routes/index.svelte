@@ -18,22 +18,16 @@
     <div class="text">
       <h1>Hi! I'm Addie.</h1>
       <p>
-        I'm a software developer and internet technologist. I am currently
-        looking for work!
-        <a href="/resume">Take a look at my resume</a>.
+        I'm a software engineer and internet technologist.
       </p>
       <p>
-        My coding work is mostly in javascript and python. I have experience
-        building full-stack applications and static sites. This site was built
-        using
-        <a target="_blank" href="https://sapper.svelte.dev">SvelteKit</a>
-        and a custom NodeJS backend.
+        I have experience building full-stack applications and static sites width
+        JavaScript, Python, and SSGs. This site was built using 
+        <a target="_blank" href="https://sapper.svelte.dev">SvelteKit</a> and NodeJS.
       </p>
       <p>
-        Outside of work, I lead the tech team at
-        <a target="_blank" href="https://phillycommunitywireless.org">Philly
-          Community Wireless</a>
-        to help build community-owned internet infrastructure.
+        Outside of work, I help build community controlled mesh networks 
+        with <a target="_blank" href="https://pcw.fi">Philly Community Wireless</a>.      
       </p>
       <Socials />
     </div>

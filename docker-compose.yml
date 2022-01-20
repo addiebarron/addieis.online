@@ -1,7 +1,8 @@
 version: "3"
 services:
   web:
-    build: .
+    build: app
+    restart: unless-stopped
     ports:
       - 3000:3000
     environment:
@@ -12,7 +13,8 @@ services:
       PGHOST: db
       PGDATABASE: database
       PGPORT: 5432
-    restart: always
+    networks:
+      - addie
 
   db:
     image: postgres
@@ -22,6 +24,11 @@ services:
       POSTGRES_PASSWORD: ${PGPASSWORD}
     volumes:
       - addie-db-data:/var/lib/postgresql/data
+    networks:
+      - addie
 
 volumes:
   addie-db-data:
+
+networks:
+  addie:

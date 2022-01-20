@@ -14,7 +14,11 @@
   <div id="project-editor" class="center">
     <h1>{type} project {project ? `"${project.title}"` : ''}</h1>
     <button id="close-button" on:click={() => dispatch('close')}>×</button>
-    <ProjectForm type={modalOptions.type} project={modalOptions.project} />
+    <ProjectForm
+      type={modalOptions.type}
+      project={modalOptions.project}
+      {software}
+    />
   </div>
 </div>
 
