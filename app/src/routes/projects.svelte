@@ -17,12 +17,14 @@
       },
     };
   }
+
 </script>
 
 <script>
   export let projects;
 
   let whenThingsGetOld = 4;
+
 </script>
 
 <svelte:head>
@@ -31,6 +33,9 @@
 
 <article>
   <h2>projects</h2>
+  <div class="project pink">
+    <p><a href="/resume.pdf">Download my resume</a></p>
+  </div>
   {#if projects.length}
     {#each projects as project, i}
       {#if i == whenThingsGetOld}
@@ -61,30 +66,31 @@
     }
     h3 {
       color: rgba(0, 0, 0, 0.8);
-      padding: 20px 0;
+      padding: 40px 0 20px 0;
       font-style: italic;
     }
     .project {
       @include paragraph;
       padding: 10px;
-      line-height: 1em;
+      line-height: 1.2em;
       margin-bottom: 30px;
       h4 {
         margin-bottom: 10px;
         a {
-          text-decoration: underline;
-          text-decoration-thickness: 2px;
-          &:after {
-            content: " ⇢";
-            font-size: 0.8rem;
-            padding-bottom: 2px;
+          &:hover {
+            color: $purple;
           }
+          text-decoration: underline;
         }
       }
+    }
+    div.pink {
+      background: #f2d0e2;
     }
   }
   span {
     color: grey;
     font-style: italic;
   }
+
 </style>

@@ -6,6 +6,7 @@
     numClicks++;
     if (numClicks >= 10) window.location = "/projects?sudo";
   }
+
 </script>
 
 <svelte:head>
@@ -88,8 +89,12 @@
         & > p,
         h1 {
           @include paragraph;
+          a {
+            color: #888;
+          }
         }
       }
     }
   }
+
 </style>

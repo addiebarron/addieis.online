@@ -11,14 +11,11 @@
       href: "/projects",
     },
     {
-      text: "resume",
-      href: "/resume",
-    },
-    {
       text: "blog",
       href: "https://dev.to/addiebarron",
     },
   ];
+
 </script>
 
 <svelte:head>
@@ -92,4 +89,5 @@
       }
     }
   }
+
 </style>
