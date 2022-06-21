@@ -2,10 +2,9 @@
 
 /* VARS */
 
-$lightpink: #f7e9f7;
-$pink: #f5d2f5;
-$darkpink: #ffa8e1;
-$bc: #40a1c3;
+$pink: #f7e9f7;
+$purple: #cc00ff;
+$bandcamp: #40a1c3;
 $twitter: #39aef7;
 $github: #24292e;
 $linkedin: #0077b5;
@@ -79,7 +78,7 @@ $bodyfont: 18px;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255,255,255,0.8);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 // force an item into a circle of given radius
@@ -94,4 +93,16 @@ $bodyfont: 18px;
 // box shadow defaults
 @mixin shad($dist: 10px, $opacity: 1) {
   box-shadow: $dist $dist rgba(0, 0, 0, $opacity);
+}
+
+@mixin paragraph {
+  display: inline-block;
+  font-size: 1em;
+  font-weight: normal;
+  line-height: 2em;
+  padding: 0 10px;
+  background: white;
+  @include shad(10px, 1);
+  border: solid 1px $border-color;
+  margin-bottom: 20px;
 }

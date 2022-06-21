@@ -1,18 +1,27 @@
+<script>
+  import PDF from "svelte-pdf";
+</script>
+
+<div class="container">
+  <p><a href="/resume.pdf">Download as PDF</a></p>
+  <div class="resume">
+    <PDF url="/resume.pdf" showButtons={false} showBorder={false} />
+  </div>
+</div>
+
 <style>
-  #resume-container {
-    width: 100%;
-    height: 100%;
-    padding: 30px;
+  .container {
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+  }
+  a {
+    color: black;
+  }
+  .resume {
+    margin: 20px;
+  }
+  :global(#topBtn) {
+    display: none; /* svelte-pdf thing */
   }
 </style>
-
-<div id="resume-container">
-  <object
-    aria-label="Resume"
-    data="resume.pdf"
-    type="application/pdf"
-    width="100%"
-    height="100%">
-    <!-- <p>Alternative text - include a link <a href="myfile.pdf">to the PDF!</a></p> -->
-  </object>
-</div>

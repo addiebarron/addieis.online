@@ -22,7 +22,7 @@
   }
 </style>
 
-<Nav path={$page.path} />
+<Nav path={$page.url.pathname} />
 
 <main>
   <slot />

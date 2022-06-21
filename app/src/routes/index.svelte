@@ -13,21 +13,28 @@
 </svelte:head>
 
 <div class="home">
-  <div class="me" on:click={testAuth} />
+  <div class="me" />
   <div class="about-me">
     <div class="text">
       <h1>Hi! I'm Addie.</h1>
       <p>
-        I'm a software engineer and internet technologist.
+        I'm an internet technologist currently working as a full-stack web
+        developer at
+        <a target="_blank" href="https://outschool.com">Outschool</a>.
       </p>
       <p>
-        I have experience building full-stack applications and static sites width
-        JavaScript, Python, and SSGs. This site was built using 
-        <a target="_blank" href="https://sapper.svelte.dev">SvelteKit</a> and NodeJS.
+        I specialize in front-end code using JavaScript, and I prioritize
+        simple, intuitive, accessible design in all my work. This site was built
+        using
+        <a target="_blank" href="https://sapper.svelte.dev">SvelteKit</a>.
       </p>
       <p>
-        Outside of work, I help build community controlled mesh networks 
-        with <a target="_blank" href="https://pcw.fi">Philly Community Wireless</a>.      
+        I aim to respect the experimental, democratizing, and power-challenging
+        potentials of the web just as I critique its massive failures.
+      </p>
+      <p>
+        Outside of work, I help build community controlled mesh networks with
+        <a target="_blank" href="https://pcw.fi">Philly Community Wireless</a>.
       </p>
       <Socials />
     </div>
@@ -78,17 +85,9 @@
       .text {
         margin: auto;
         padding-bottom: 10px;
-        h1,
-        p {
-          display: inline-block;
-          font-size: 1em; //o
-          font-weight: normal; //o
-          line-height: 2em;
-          padding: 0 10px;
-          background: white;
-          @include shad(10px, 1);
-          border: solid 1px $border-color;
-          margin-bottom: 20px;
+        & > p,
+        h1 {
+          @include paragraph;
         }
       }
     }

@@ -106,7 +106,7 @@
         &.bc {
           path,
           polygon {
-            fill: $bc;
+            fill: $bandcamp;
           }
         }
         &.github {
