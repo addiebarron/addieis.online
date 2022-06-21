@@ -10,12 +10,8 @@
     "prod": "npm ci && npm run build && npm start"
   },
   "dependencies": {
-    "@supabase/postgrest-js": "^0.33.3",
     "cloudinary": "^1.26.3",
     "js-yaml": "^4.1.0",
-    "nanoid": "^3.1.25",
-    "pg": "^8.7.1",
-    "pg-format": "^1.0.4",
     "prettier-plugin-svelte": "^1.4.2",
     "svelte-pdf": "^1.0.11"
   },
@@ -30,7 +26,7 @@
     "@rollup/plugin-node-resolve": "^8.0.0",
     "@rollup/plugin-replace": "^2.4.2",
     "@rollup/plugin-url": "^5.0.0",
-    "@sveltejs/adapter-node": "^1.0.0-next.43",
+    "@sveltejs/adapter-static": "^1.0.0-next.34",
     "@sveltejs/kit": "^1.0.0-next.156",
     "autoprefixer": "^10.2.6",
     "postcss": "^8.3.5",
