@@ -6,9 +6,9 @@
 </script>
 
 <style lang="scss" global>
-  @use "../styles/global";
+  @import "../styles/global";
 
-  #svelte {
+  body {
     main {
       overflow: scroll;
       display: flex;

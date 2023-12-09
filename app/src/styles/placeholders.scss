@@ -1,4 +1,5 @@
 @use "mixins" as *;
+@use "colors";
 
 %center {
   position: absolute;
@@ -32,9 +33,9 @@
   display: inline-block;
   font-size: 1em;
   font-weight: normal;
-  line-height: 2em;
-  padding: 0 10px;
-  background: white;
+  line-height: 1.5em;
+  padding: 5px 10px;
+  background: colors.$boxes;
   @include shadow(10px, 1);
   border: solid 1px black;
   margin-bottom: 20px;

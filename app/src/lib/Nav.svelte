@@ -45,7 +45,7 @@
   nav {
     display: block;
     width: 100%;
-    background: white;
+    background: colors.$boxes;
     border-bottom: solid 1px black;
     ul {
       display: flex;

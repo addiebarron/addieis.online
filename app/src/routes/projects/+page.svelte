@@ -1,34 +1,12 @@
-<script context="module">
-  import yaml from "js-yaml";
-
-  export async function load({ fetch }) {
-    let projects = [];
-    try {
-      const res = await fetch("/data.yaml");
-      const text = await res.text();
-      projects = res.ok ? yaml.load(text) ?? [] : [];
-    } catch {
-      console.log("Error reading data file.");
-    }
-
-    return {
-      props: {
-        projects,
-      },
-    };
-  }
-    throw new Error("Name");
-
-</script>
-
 <script>
-  export let projects;
-</script>
+  export let data;
 
+  const { projects } = data;
+</script>
 
 <style lang="scss">
-  @use "../styles/colors";
-  @use "../styles/placeholders";
+  @use "../../styles/colors";
+  @use "../../styles/placeholders";
 
   article {
     height: 100%;
@@ -39,11 +17,6 @@
     position: relative;
     h2 {
       padding-bottom: 40px;
-    }
-    h3 {
-      color: rgba(0, 0, 0, 0.8);
-      padding: 40px 0 20px 0;
-      font-style: italic;
     }
     .project {
       @extend %paragraph;

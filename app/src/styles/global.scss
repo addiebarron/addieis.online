@@ -12,10 +12,12 @@ body {
   height: 100%;
   width: 100%;
   background-color: colors.$background;
+  color: colors.$text;
 }
 
 a,
 span.link {
+  color: black;
   font-weight: bold;
   text-decoration: underline;
   &:visited {
