@@ -52,7 +52,7 @@
     <p class="user-message" in:fade|global>There's nothing here!</p>
   {/if}
   <br/>
-  {#if dev && $page.error.stack}
+  {#if dev && stackLines}
     <p class="error-stack">
       {#each stackLines as line}
          <p>{line}</p>

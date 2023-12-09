@@ -1,5 +1,5 @@
-export function handleError({ event, error }) {
+export function handleError({ error: { stack } }) {
   return {
-    stack: error.stack,
+    stack,
   };
 }
