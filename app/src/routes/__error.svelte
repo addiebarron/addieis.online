@@ -13,53 +13,49 @@
 
 <script>
   import { fade } from 'svelte/transition';
+  import { dev } from "$app/env";
 
-  export let status;
-  export let error;
+  export let status, error;
 </script>
 
-<style>
-  h1, p {
-    margin: 0 auto;
-  }
-  h1 {
-    font-weight: 700;
-  }
-  .error-container {
-    display: flex;
-    flex-direction: column;
-    height: 70%;
-    width: 100%;
-  }
-  .error-container h1 {
-    font-family: 'Major Mono Display';
-    font-size: 20em;
-    font-weight: bold;
-    color: rgba(0, 0, 0, 0.3);
+
+<style lang="scss">
+  div.container {
+    padding: 20px;
     margin: auto;
-  }
-  .error-container p {
-    font-size: 1.5em;
-    font-style: italic;
-  }
-  @media (min-width: 480px) {
+    width: 100%;
+    max-width: 800px;
     h1 {
-      font-size: 4em;
+      font-weight: 700;
+      font-size: 20em;
+      font-weight: bold;
+      color: rgba(0, 0, 0, 0.3);
+      margin: auto;
+      @media (max-width: 480px) {
+        font-size: 10em;
+      }
+    }
+    p.user-message {
+     font-style: italic;
+    }
+    p.error-stack { 
+      word-wrap: break-word;
     }
   }
 </style>
+
 
 <svelte:head>
   <title>{status}</title>
 </svelte:head>
 
-<div in:fade class="error-container">
+<div class="container" in:fade>
   <h1>{status}</h1>
   {#if status == 404}
-    <p in:fade>There's nothing here!</p>
+    <p class="user-message" in:fade>There's nothing here!</p>
+  {/if}
+  <br/>
+  {#if dev && error.stack}
+    <p class="error-stack">{error.stack}</p>
   {/if}
 </div>
-
-{#if error.stack}
-  <pre>{error.stack}</pre>
-{/if}

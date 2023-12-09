@@ -3,75 +3,93 @@
   url: https://pcw.fi
   show: true
   color: "#95c8ef"
-  imagesrc: https://res.cloudinary.com/addieisonline/image/upload/t_projects/mS3tHDIRBSqHUgR3qC21
-
-- title: Bananacamp
-  description: A web extension that tells Spotify users to buy on Bandcamp instead.
-  url: https://addieis.online/project/bananacamp
-  show: true
-  color: "#d4c2d6"
-  imagesrc: https://res.cloudinary.com/addieisonline/image/upload/t_projects/HGg7KbZf-u6FzwIFIwd6
-
-- title: pancake demo
-  description:
-    A demonstration using SvelteKit and the Pancake library for no-javascript
-    responsive and dynamic data visualizations.
-  url: https://covidviz.addieis.online
-  show: true
-  color: "#f1a993"
-  imagesrc: https://res.cloudinary.com/addieisonline/image/upload/t_projects/9lhBO8SbWY3N4nl4pqvt
+  image:
+    src: https://res.cloudinary.com/addieisonline/image/upload/t_projects/mS3tHDIRBSqHUgR3qC21
+    alt: The Philly Community Wireless logo, a Liberty Bell icon with WiFi waves emitting from it.
 
 - title: Which Briza r u?
-  description: A birthday webgift for my sister
-  url: https://whichbriza.ru
+  description: A birthday webgift for my sister. Made in one night.
+  url: https://whichbrizaru.netlify.app
   show: true
   color: "#c1f6b6"
-  imagesrc: https://res.cloudinary.com/addieisonline/image/upload/t_projects/zVhuaDXg6R8Bt5trXPSH
-
-- title: ParaSite
-  description:
-    An alternate reality game exploring difference and normativity, played
-    by the UChicago class of 2021. Concept and design work.
-  url: https://www.wired.com/story/an-alternate-reality-game-that-takes-freshmen-orientation-to-a-new-level/
-  show: true
-  color: "#f1a993"
-  imagesrc: https://res.cloudinary.com/addieisonline/image/upload/t_projects/GskR3CAtrm90Ax4RPukn
+  image:
+    src: https://res.cloudinary.com/addieisonline/image/upload/t_projects/zVhuaDXg6R8Bt5trXPSH
+    alt: Briza, my sister's longhair cat. She has a stern face but you can tell she's soft.
 
 - title: Chladni
   description: Sand on a speaker cone. A physics demonstration in p5js.
   url: https://addieis.online/project/chladni
   show: true
   color: "#fde587"
-  imagesrc: https://res.cloudinary.com/addieisonline/image/upload/t_projects/OERbG1yZaTq_qxcMJHiX
+  image:
+    src: https://res.cloudinary.com/addieisonline/image/upload/t_projects/OERbG1yZaTq_qxcMJHiX
+    alt: A screenshot from the Chladni web app, showing a frame of the sand particle animation.
+
+- title: Bananacamp
+  description: A web extension that tells Spotify users to buy on Bandcamp instead.
+  url: https://addieis.online/project/bananacamp
+  show: false
+  color: "#d4c2d6"
+  image:
+    src: https://res.cloudinary.com/addieisonline/image/upload/t_projects/HGg7KbZf-u6FzwIFIwd6
+
+- title: pancake demo
+  description:
+    A demonstration using SvelteKit and the Pancake library for no-javascript
+    responsive and dynamic data visualizations.
+  url: https://covidviz.addieis.online
+  show: false
+  color: "#f1a993"
+  image:
+    src: https://res.cloudinary.com/addieisonline/image/upload/t_projects/9lhBO8SbWY3N4nl4pqvt
+
+- title: ParaSite
+  description:
+    An alternate reality game exploring difference and normativity, played
+    by the UChicago class of 2021. Concept and design work.
+  url: https://www.wired.com/story/an-alternate-reality-game-that-takes-freshmen-orientation-to-a-new-level/
+  show: false
+  color: "#f1a993"
+  image:
+    src: https://res.cloudinary.com/addieisonline/image/upload/t_projects/GskR3CAtrm90Ax4RPukn
+    alt: Alt text here.
 
 - title: Real Chi Hoods
   description:
     A bot tweeting Chicago neighborhood names with some creative license.
     Python and NodeJS.
   url: https://twitter.com/realchihoods
-  show: true
+  show: false
   color: "#95c8ef"
-  imagesrc: https://res.cloudinary.com/addieisonline/image/upload/t_projects/G-onG4R0WDZK37VbQhfW
+  image:
+    src: https://res.cloudinary.com/addieisonline/image/upload/t_projects/G-onG4R0WDZK37VbQhfW
+    alt: Alt text here.
 
 - title: Toxicity Sphere
   description:
     A wordpress custom taxonomy accommodating 18 new articles for an academic
     blog.
   url: http://somatosphere.net/toxicity
-  show: true
+  show: false
   color: "#d4c2d6"
-  imagesrc: https://res.cloudinary.com/addieisonline/image/upload/t_projects/8Evtd2L6EEpSoy-3inil
+  image:
+    src: https://res.cloudinary.com/addieisonline/image/upload/t_projects/8Evtd2L6EEpSoy-3inil
+    alt: Alt text here.
 
 - title: South Pole Telescope
   description: A data analysis project for the SPT astrophysics collaboration.
   url: https://addieis.online/project/spt
   show: false
   color: "#c1f6b6"
-  imagesrc: https://res.cloudinary.com/addieisonline/image/upload/t_projects/uvSwvIU2dZkT0jwels08
+  image:
+    src: https://res.cloudinary.com/addieisonline/image/upload/t_projects/uvSwvIU2dZkT0jwels08
+    alt: Alt text here.
 
 - title: Moskowitz Lab
   description: A website redesign project for the Moskowitz cancer lab.
   url: https://moskowitzlab.uchicago.edu
   show: false
   color: "#95c8ef"
-  imagesrc: https://res.cloudinary.com/addieisonline/image/upload/t_projects/8kmfx-jaLq5m6WbTSYaa
+  image:
+    src: https://res.cloudinary.com/addieisonline/image/upload/t_projects/8kmfx-jaLq5m6WbTSYaa
+    alt: Alt text here.

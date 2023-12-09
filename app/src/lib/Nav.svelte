@@ -39,12 +39,14 @@
 </nav>
 
 <style lang="scss">
-  @import "../styles/theme";
+  @use "../styles/colors";
+  @use "../styles/mixins";
+
   nav {
     display: block;
     width: 100%;
     background: white;
-    border-bottom: solid 1px $border-color;
+    border-bottom: solid 1px black;
     ul {
       display: flex;
       width: 100%;
@@ -62,6 +64,7 @@
           display: flex;
           width: 100%;
           height: 100%;
+          text-decoration: none;
           &:focus {
             outline: dashed 2px black;
             outline-offset: -0.6rem;
@@ -72,7 +75,7 @@
         }
         &:hover {
           a > span {
-            @include underline(4px, #ddd);
+            @include mixins.underline(4px, #ddd);
           }
         }
         &:focus {
@@ -83,7 +86,7 @@
           position: relative;
           display: inline-block;
           & > a > span {
-            @include underline(4px, black);
+            @include mixins.underline(4px, black);
           }
         }
       }

@@ -17,42 +17,18 @@
       },
     };
   }
+    throw new Error("Name");
 
 </script>
 
 <script>
   export let projects;
-
-  let whenThingsGetOld = 4;
-
 </script>
 
-<svelte:head>
-  <title>addie b - projects</title>
-</svelte:head>
-
-<article>
-  <h2>projects</h2>
-  <div class="project pink">
-    <p><a href="/resume.pdf">Download my resume</a></p>
-  </div>
-  {#if projects.length}
-    {#each projects as project, i}
-      {#if i == whenThingsGetOld}
-        <h3>Older projects for which I can't be held responsible</h3>
-      {/if}
-      {#if project.show}
-        <div class="project">
-          <h4><a target="_blank" href={project.url}>{project.title}</a></h4>
-          <p>{project.description}</p>
-        </div>
-      {/if}
-    {/each}
-  {:else}<span>Nothing here.</span>{/if}
-</article>
 
 <style lang="scss">
-  @import "../styles/theme";
+  @use "../styles/colors";
+  @use "../styles/placeholders";
 
   article {
     height: 100%;
@@ -70,22 +46,16 @@
       font-style: italic;
     }
     .project {
-      @include paragraph;
+      @extend %paragraph;
       padding: 10px;
       line-height: 1.2em;
       margin-bottom: 30px;
       h4 {
         margin-bottom: 10px;
-        a {
-          &:hover {
-            color: $purple;
-          }
-          text-decoration: underline;
-        }
       }
-    }
-    div.pink {
-      background: #f2d0e2;
+      &.pink {
+        background: colors.$background;
+      }
     }
   }
   span {
@@ -94,3 +64,25 @@
   }
 
 </style>
+
+
+<svelte:head>
+  <title>addie b - projects</title>
+</svelte:head>
+
+<article>
+  <h2>projects</h2>
+  <div class="project pink">
+    <p><a href="/resume.pdf">Download my resume</a></p>
+  </div>
+  {#if projects.length}
+    {#each projects as project, i}
+      {#if project.show}
+        <div class="project">
+          <h4><a target="_blank" href={project.url}>{project.title}</a></h4>
+          <p>{project.description}</p>
+        </div>
+      {/if}
+    {/each}
+  {:else}<span>Nothing here.</span>{/if}
+</article>

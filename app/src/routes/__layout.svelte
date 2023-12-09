@@ -1,13 +1,12 @@
 <!-- as of SvelteKit next.119: CANNOT USE SASS IN LAYOUT COMPONENTS -->
 
 <script>
-  import '../app.css';
   import Nav from "$lib/Nav.svelte";
   import { page } from '$app/stores';
 </script>
 
 <style lang="scss" global>
-  @import '../styles/global';
+  @use "../styles/global";
 
   #svelte {
     main {
@@ -27,5 +26,3 @@
 <main>
   <slot />
 </main>
-
-<!-- <Footer /> -->

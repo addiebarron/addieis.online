@@ -1,5 +1,5 @@
-@import "theme";
-@import "fonts";
+@use "fonts";
+@use "colors";
 
 * {
   box-sizing: border-box;
@@ -11,53 +11,24 @@ html,
 body {
   height: 100%;
   width: 100%;
-  background-color: $pink;
+  background-color: colors.$background;
 }
 
-p,
-span,
-h1 {
-  a,
-  span.link {
-    font-weight: bold;
-    text-decoration: underline;
-    &:hover {
-      color: $purple;
-    }
+a,
+span.link {
+  font-weight: bold;
+  text-decoration: underline;
+  &:visited {
+    color: inherit;
+  }
+  &:hover {
+    color: colors.$link;
   }
 }
 
 body {
   font-family: "Inconsolata";
-  font-size: $bodyfont;
-  font-weight: normal;
+  font-size: 18px;
 }
 
-// GENERAL CLASSES
-
-.hidden {
-  display: none;
-}
-.hcenter {
-  @include hcenter;
-}
-.vcenter {
-  @include vcenter;
-}
-.center {
-  @include center;
-}
-.overlay {
-  @include overlay;
-}
-.box {
-  @include paragraph;
-}
-// .slide-in {
-//   @include transform(scale(0, 1));
-//   @include transition((transform), 0.5s, ease);
-//   @include transform-origin(left center 0);
-//   &.loaded {
-//     @include transform(scale(1, 1));
-//   }
-// }
+@include fonts.font-faces;
