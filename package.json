@@ -1,0 +1,12 @@
+{
+  "name": "addieis.online",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "sass scss:public/css"
+  },
+  "author": "Addie Barron",
+  "dependencies": {
+    "sass": "^1.85.1"
+  }
+}

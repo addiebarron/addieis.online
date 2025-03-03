@@ -1,0 +1,54 @@
+@use "mixins" as *;
+@use "colors";
+
+%center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  @include transform(translate(-50%, -50%));
+}
+
+%vcenter {
+  position: absolute;
+  top: 50%;
+  @include transform(translateY(-50%));
+}
+
+%hcenter {
+  position: absolute;
+  left: 50%;
+  @include transform(translateX(-50%));
+}
+
+%overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+%paragraph {
+  display: inline-block;
+  font-size: 1em;
+  font-weight: normal;
+  line-height: 1.5em;
+  padding: 5px 10px;
+  background: colors.$boxes;
+  @include shadow(10px, 1);
+  border: solid 1px black;
+  margin-bottom: 20px;
+}
+
+%sr-only {
+  &:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+}
