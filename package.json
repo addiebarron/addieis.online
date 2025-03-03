@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "sass scss:public/css"
+    "serve": "live-server public",
+    "watch": "sass --watch scss:public/css",
+    "build": "sass scss:public/css",
+    "start": "npm run serve & npm run watch"
   },
   "author": "Addie Barron",
-  "dependencies": {
+  "devDependencies": {
+    "live-server": "^1.2.2",
     "sass": "^1.85.1"
   }
 }
