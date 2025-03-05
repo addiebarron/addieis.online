@@ -11,9 +11,32 @@
 
 <body>
     <div id="skip"><a href="#content">Skip to main content</a></div>
+    <div class="bug">🐞</div>
+    <div class="bug">🦋</div>
+    <div class="bug">🪲</div>
+    <div class="bug">🐞</div>
+    <div class="bug">🦋</div>
+    <div class="bug">🪲</div>
+    <div class="bug">🐞</div>
+    <div class="bug">🦋</div>
+    <div class="bug">🪲</div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const bugs = document.querySelectorAll(".bug");
+            bugs.forEach(bug => {
+                bug.style.display = "block"; // Only show if JS is enabled
+                bug.style.top = Math.random() * 90 + 5 + "vh";
+                bug.style.left = Math.random() * 90 + 5 + "vw";
+                bug.style.transform = `rotate(${Math.random() * 240 - 120}deg)`
+            })
+        });
+    </script>
     <main>
-        <div class="me"></div>
-        <div id="content" class="text">
+        <div id="sidebar">
+            <img class="me" src="images/me.jpg"
+                alt="A photo of Addie looking into the camera with Mulberry juice on her lips.">
+        </div>
+        <div id="content">
             <h1>addieis.online</h1>
             <p>
                 Addie Barron is a technologist & ecologist working and living in West
