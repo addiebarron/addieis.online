@@ -4,6 +4,7 @@ $fontFamily: "Inconsolata";
 @mixin font-faces {
 
   // Bootstrapped from https://google-webfonts-helper.herokuapp.com
+
   /* inconsolata-regular - latin */
   @font-face {
     font-family: "Inconsolata";
@@ -42,5 +43,13 @@ $fontFamily: "Inconsolata";
       /* Safari, Android, iOS */
       url("../fonts/inconsolata/inconsolata-v20-latin-700.svg#Inconsolata") format("svg");
     /* Legacy iOS */
+  }
+
+  /* pp mondwest */
+  @font-face {
+    font-family: "PP Mondwest";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/ppmondwest/PPMondwest-Regular.otf");
   }
 }
