@@ -49,6 +49,7 @@ header .header-content {
   max-width: 975px;
   width: 100%;
   margin: 10px 0;
+  padding-top: 10px;
 }
 
 header .header-title {
@@ -96,12 +97,12 @@ main {
   border-radius: 50%;
   object-fit: cover;
   margin-right: 30px;
-  background-color: #eee;
+  background-color: var(--blue);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 36px;
-  color: #aaa;
+  color: var(--light);
 }
 
 .profile-details h1 {
@@ -212,8 +213,8 @@ main {
 .post-modal-content {
   display: flex;
   max-width: 1200px;
-  margin: 30px auto;
-  background-color: white;
+  margin: 30px 50px;
+  background-color: var(--blue);
   height: calc(100vh - 60px);
   max-height: 800px;
   border-radius: 4px;
@@ -338,7 +339,7 @@ main {
 
 .close-modal {
   position: absolute;
-  top: 20px;
+  top: 40px;
   right: 20px;
   color: white;
   font-size: 30px;
@@ -364,11 +365,11 @@ main {
 }
 
 .modal-prev {
-  left: 20px;
+  left: 5px;
 }
 
 .modal-next {
-  right: 20px;
+  right: 5px;
 }
 
 .slideshow-nav {
@@ -376,15 +377,14 @@ main {
   top: 50%;
   transform: translateY(-50%);
   color: white;
-  font-size: 30px;
+  font-size: 22px;
   cursor: pointer;
   z-index: 5;
-  background-color: rgba(0, 0, 0, 0.7);
-  width: 40px;
-  height: 40px;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: flex;
-  align-items: center;
   justify-content: center;
   transition: background-color 0.2s;
 }
@@ -394,11 +394,11 @@ main {
 }
 
 .slideshow-prev {
-  left: 10px;
+  left: 50px;
 }
 
 .slideshow-next {
-  right: 10px;
+  right: 50px;
 }
 
 .slideshow-indicator {
