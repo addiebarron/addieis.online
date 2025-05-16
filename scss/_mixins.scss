@@ -1,4 +1,5 @@
 @use "sass:math";
+@use "colors";
 
 //keep it this way so as to be able to use a list of properties
 @mixin transition($properties: all, $duration: 0.2s, $ease: ease) {
@@ -40,6 +41,6 @@
   -moz-border-radius: $radius;
 }
 
-@mixin shadow($dist: 10px, $opacity: 1) {
-  box-shadow: $dist $dist rgba(0, 0, 0, $opacity);
+@mixin shadow($dist: 10px, $opacity: 1, $color: colors.$boxshadow) {
+  box-shadow: $dist $dist rgba($color, $opacity);
 }

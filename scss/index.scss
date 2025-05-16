@@ -50,10 +50,21 @@ body {
             @extend %shadowbox;
         }
 
+        a {
+            color: #c45cff;
+        }
+
         h1,
         h2 {
-            font-size: 1.6rem;
             padding: 0rem 0.7rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 1.6rem;
         }
 
         ul {
@@ -83,7 +94,7 @@ body {
         #sidebar {
             text-align: center;
 
-            img.me {
+            img {
                 @include mixins.circular(150px);
                 border: solid 1px black;
                 margin: 0 auto;

@@ -1,0 +1,250 @@
+:root {
+  --blue: #071646;
+  --green: #90b832;
+  --light: #cad3f1;
+}
+
+@font-face {
+  font-family: "PP Mondwest";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/ppmondwest/PPMondwest-Regular.otf");
+}
+
+* {
+  font-family: "PP Mondwest", sans-serif;
+}
+
+body {
+  background-color: var(--green);
+  color: var(--blue);
+  font-size: 1.2em;
+}
+
+#search-input {
+  font-size: 1.6rem;
+  width: 100%;
+}
+
+#search-input::placeholder {
+  color: #fff4
+}
+
+.search_time {
+  display: inline;
+  margin-top: 20px; // this doesn't work
+  margin-left: 5px;
+}
+
+.search_text {
+  display: inline;
+}
+
+.search_link {
+  display: inline;
+}
+
+#sorting {
+  margin-top: 8px;
+  line-height: 1.7em;
+}
+
+.sort-button {
+  font-size: 1.0em;
+}
+
+.wrapper {
+  display: block;
+  max-width: 600px;
+  margin: 0 auto;
+  word-wrap: break-word;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.tweet {
+  background-color: var(--light);
+  max-width: 600px;
+  padding: 16px;
+  font-size: 1.2em;
+  border: 2px solid black;
+  border-radius: 16px;
+}
+
+.tweet img {
+  max-height: 100%;
+  vertical-align: bottom;
+  width: 100%;
+  object-fit: cover;
+}
+
+.tweet video {
+  max-height: 100%;
+  vertical-align: bottom;
+  width: 100%;
+}
+
+.tweet ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  gap: 8px;
+  padding-left: 0px;
+  margin-bottom: 0px;
+}
+
+.tweet li {
+  height: 20vh;
+  width: 20vh;
+  flex-grow: 1;
+}
+
+.tweet .display_name {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.tweet .user_name {
+  margin-top: 4px;
+}
+
+.tweet .favorite_count {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.tweet .retweet_count {
+  display: inline-block;
+  margin-left: 16px;
+  margin-bottom: 0;
+}
+
+.tweet .created_at {
+  margin-bottom: 0;
+}
+
+.tweet .permalink {
+  margin-left: 16px;
+}
+
+.child {
+  margin-top: 16px;
+  margin-left: 64px;
+  max-width: calc(600px - 64px);
+  background-color: var(--light);
+}
+
+.parent {
+  margin-bottom: 16px;
+  margin-right: 64px;
+  max-width: calc(600px - 64px);
+  background-color: var(--light);
+}
+
+@media screen and (max-width: 599px) {
+  .tweet li {
+    height: 15vh;
+    width: 15vh;
+    flex-grow: 1;
+  }
+}
+
+@media(prefers-color-scheme: dark) {
+  body {
+    background-color: var(--blue);
+    color: var(--light);
+  }
+
+  a {
+    color: var(--green);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--green);
+    text-decoration: underline;
+  }
+
+  .tweet {
+    background-color: var(--blue);
+    border: 1px solid gray;
+    /*#33ff00;*/
+    border-radius: 5px;
+  }
+
+  .child {
+    background-color: var(--blue);
+  }
+
+  .parent {
+    background-color: var(--blue);
+  }
+
+  button {
+    background-color: var(--blue);
+    color: var(--light);
+  }
+
+  input {
+    background-color: var(--blue);
+    color: var(--light);
+  }
+
+  .tweet .favorite_count {
+    color: var(--green);
+  }
+
+  .tweet .retweet_count {
+    color: var(--green);
+  }
+
+  .tweet .created_at {
+    color: var(--green);
+  }
+}
+
+#tabs {
+  margin: -16px 0 0;
+}
+
+.tab:first-child {
+  margin-left: -16px;
+  border-top-left-radius: 16px;
+}
+
+.hr {
+  margin: 0 -16px 16px -16px;
+}
+
+.tab {
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-right: 2px solid black;
+  box-sizing: border-box;
+}
+
+.tab.active {
+  text-decoration: underline;
+}
+
+#browse-sort>button {
+  font-size: 1.0em;
+}
+
+#page-num {
+  font-size: 1.0em;
+  width: 80px;
+}
+
+#browse-sort {
+  line-height: 1.7em;
+}
+
+#paging {
+  margin: 8px 0;
+}
