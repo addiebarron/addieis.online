@@ -1,7 +1,9 @@
 :root {
   --blue: #071646;
   --green: #90b832;
+  --dark-green: #668818;
   --light: #cad3f1;
+  --dull: #8e99bc;
 }
 
 @font-face {
@@ -16,12 +18,87 @@
 }
 
 body {
-  background-color: var(--green);
-  color: var(--blue);
+  margin: 0;
+  background-color: var(--blue);
+  color: var(--light);
   font-size: 1.2em;
 }
 
+header {
+  padding: 20px 0 10px 0;
+  margin-bottom: 20px;
+  width: 100%;
+  background: black;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1 {
+  margin: 0;
+}
+
+.header-content {
+  max-width: 975px;
+  margin: auto;
+}
+
+#tabs {
+  width: fit-content;
+  display: flex;
+  gap: 8px;
+}
+
+.tab {
+  border: solid 1px var(--dull);
+  border-bottom: none;
+  color: var(--green);
+  font-size: 1.2em;
+  cursor: pointer;
+  padding: 4px 10px;
+  box-sizing: border-box;
+  border-radius: 8px 8px 0 0;
+}
+
+.tab.active {
+  text-decoration: underline;
+  box-shadow: 0px 4px 0 -1px var(--blue);
+  z-index: 5;
+}
+
+.tab:not(.active) {
+  color: var(--dark-green);
+  background: black;
+}
+
+#search-box {
+  max-width: 600px;
+  padding: 16px;
+  font-size: 1.2em;
+  border: 1px solid var(--dull);
+}
+
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+hr {
+  margin: 0;
+  border-style: solid;
+  border-width: 1px;
+  border-bottom-width: 0;
+  border-color: var(--light);
+  opacity: 0.5;
+}
+
 #search-input {
+  border: solid 1px var(--dull);
+  padding: 4px 6px;
   font-size: 1.6rem;
   width: 100%;
 }
@@ -30,27 +107,39 @@ body {
   color: #fff4
 }
 
-.search_time {
-  display: inline;
-  margin-top: 20px; // this doesn't work
-  margin-left: 5px;
+.search-item {
+  margin: 1rem 0;
 }
 
-.search_text {
-  display: inline;
+a.search-time {
+  font-size: 1.2rem;
 }
 
-.search_link {
-  display: inline;
+p.search-text {
+  margin: 0;
+  margin-bottom: 1rem;
 }
 
-#sorting {
-  margin-top: 8px;
+.search-footer {
+  margin-top: 10px;
+}
+
+.sorting {
   line-height: 1.7em;
+  margin-bottom: 10px;
 }
 
 .sort-button {
+  color: var(--green);
   font-size: 1.0em;
+}
+
+.sort-button:first-child {
+  margin-left: 5px;
+}
+
+.sort-button.active {
+  text-decoration: underline;
 }
 
 .wrapper {
@@ -153,10 +242,6 @@ body {
 }
 
 @media(prefers-color-scheme: dark) {
-  body {
-    background-color: var(--blue);
-    color: var(--light);
-  }
 
   a {
     color: var(--green);
@@ -193,58 +278,34 @@ body {
     color: var(--light);
   }
 
-  .tweet .favorite_count {
-    color: var(--green);
-  }
-
+  .tweet .favorite_count,
   .tweet .retweet_count {
-    color: var(--green);
+    color: var(--dull);
   }
-
-  .tweet .created_at {
-    color: var(--green);
-  }
-}
-
-#tabs {
-  margin: -16px 0 0;
-}
-
-.tab:first-child {
-  margin-left: -16px;
-  border-top-left-radius: 16px;
 }
 
 .hr {
   margin: 0 -16px 16px -16px;
 }
 
-.tab {
-  border: none;
-  font-size: 1.2em;
-  cursor: pointer;
-  padding: 4px 10px;
-  border-right: 2px solid black;
-  box-sizing: border-box;
-}
-
-.tab.active {
-  text-decoration: underline;
-}
-
-#browse-sort>button {
-  font-size: 1.0em;
-}
-
 #page-num {
   font-size: 1.0em;
-  width: 80px;
-}
-
-#browse-sort {
-  line-height: 1.7em;
+  width: 40px;
+  border: solid 1px var(--dull);
+  border-radius: 4px;
+  padding: 0 5px;
 }
 
 #paging {
-  margin: 8px 0;
+  margin: 8px 0 24px 0;
+}
+
+.gallery ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.gallery img {
+  width: 100%;
 }

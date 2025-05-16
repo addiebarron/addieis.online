@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", browseTab)
+
 let results;
 
 var index = new FlexSearch.Document({
@@ -15,7 +17,9 @@ var index = new FlexSearch.Document({
 
 const searchInput = document.getElementById("search-input");
 
+let processed = false;
 function processData(data) {
+  document.getElementById("loading").hidden = false;
   for (doc of data) {
     index.add({
       id_str: doc.id_str,
@@ -27,14 +31,18 @@ function processData(data) {
   }
   document.getElementById("loading").hidden = true;
   document.getElementById("search").hidden = false;
+  processed = true;
 }
 
-processData(searchDocuments);
 let browseDocuments = searchDocuments.sort(function (a, b) {
   return new Date(b.created_at) - new Date(a.created_at);
 });
 
 function sortResults(criterion) {
+  const buttons = document.querySelectorAll(".sort-button");
+  buttons.forEach(el => el.classList.remove("active"));
+  document.querySelector(".sort-button." + criterion).classList.add("active");
+
   if (criterion === "newest-first") {
     results = results.sort(function (a, b) {
       return new Date(b.created_at) - new Date(a.created_at);
@@ -88,16 +96,7 @@ function sortResults(criterion) {
 }
 
 function renderResults() {
-  const output = results.map((item) =>
-    `<p class="search_item"><div class="search_text">${item.full_text
-      }</div><br><div class="search_link"><a href="lengthypooch/status/${item.id_str
-      }">link</a></div><div class="search_time">${new Date(
-        item.created_at
-      ).toLocaleString()}</div><hr class="search_divider" /></p>`.replace(
-        /\.\.\/\.\.\/tweets_media\//g,
-        "lengthypooch/tweets_media/"
-      )
-  );
+  const output = results.map(renderTweet);
   document.getElementById("output").innerHTML = output.join("");
   if (results.length > 0) {
     document.getElementById("output").innerHTML +=
@@ -122,6 +121,7 @@ function onSearchChange(e) {
 searchInput.addEventListener("input", onSearchChange);
 
 function searchTab() {
+  if (!processed) processData(searchDocuments);
   const clickedTab = document.getElementById("search-tab");
   clickedTab.classList.add("active");
   const otherTab = document.getElementById("browse-tab");
@@ -160,19 +160,23 @@ document.getElementById("page-num").min = 1;
 function renderBrowse() {
   const output = browseDocuments
     .slice(browseIndex, browseIndex + pageSize)
-    .map((item) =>
-      `<p class="search_item"><div class="search_text">${item.full_text
-        }</div><br><div class="search_link"><a href="lengthypooch/status/${item.id_str
-        }">link</a></div> <div class="search_time">${new Date(
-          item.created_at
-        ).toLocaleString()}</div><hr class="search_divider" /></p>`.replace(
-          /\.\.\/\.\.\/tweets_media\//g,
-          "lengthypooch/tweets_media/"
-        )
-    );
+    .map(renderTweet);
   document.getElementById("browse-output").innerHTML = output.join("");
   document.getElementById("browse-output").innerHTML +=
     '<a href="#tabs">top &uarr;</a>';
+}
+
+function renderTweet(item) {
+  return `<div class="search-item">
+        <p class="search-text">${item.full_text}</p>
+        <a class="search-time" href="lengthypooch/status/${item.id_str}">
+          ${new Date(item.created_at).toLocaleString()}</a>
+      </div>
+      <hr class="search-divider"/>`
+    .replace(
+      /\.\.\/\.\.\/tweets_media\//g,
+      "lengthypooch/tweets_media/"
+    )
 }
 
 renderBrowse();

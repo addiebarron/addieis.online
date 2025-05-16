@@ -9,46 +9,59 @@
 </head>
 
 <body>
+  <header>
+    <div class="header-content">
+      <h1>Welcome to my Twitter archive</h1>
+      <p>In 2024, I deleted my Twitter account after 11 years, but not before downloading the full archive of my decade
+        of posting. I think of this page as a memorial for the experience of being on the website and the words I
+        published over those years. It's melancholic, but God is Change and that website had long overstayed its
+        welcome.
+      </p>
+      <p>
+        On this page you can search my tweets or browse by date or popularity. Threads are kept together
+        if you click through any individual tweet. This archive does not include replies, so you'll only see
+        "standalone"
+        tweets and threads.
+      </p>
+      <p>This site was made with <a href="https://tinysubversions.com/twitter-archive/make-your-own/">Darius Kazemi's
+          Twitter archiving tool</a>.</p>
+    </div>
+  </header>
   <div class="wrapper">
-    <h1>Welcome to my Twitter archive</h1>
-    <p>In 2024, I deleted my Twitter account after 11 years, but not before downloading the full archive of my decade
-      of posting. I think of this page as a memorial for the experience of being on the website and the words I
-      published over those years. It's melancholic, but God is Change and that website had long overstayed its welcome.
-    </p>
-    <p>
-      On this page you can search my tweets or browse by date or popularity. Threads are kept together
-      if you click through any individual tweet. This archive does not include replies, so you'll only see "standalone"
-      tweets and threads.
-    </p>
-    <div class="flex-wrap">
-      <div class="tweet">
-        <p id="tabs">
-          <button class="tab active" id="search-tab" onclick="searchTab()">Search</button><button class="tab"
-            id="browse-tab" onclick="browseTab()">Browse</button>
-        </p>
-        <hr class="hr">
-        <p id="loading">Loading search...</p>
+    <main class="flex-wrap">
+      <div id="tabs">
+        <button class="tab active" id="browse-tab" onclick="browseTab()">Browse</button>
+        <button class="tab" id="search-tab" onclick="searchTab()">Search</button>
+      </div>
+      <div id="search-box">
+        <p id="loading" hidden>Loading search...</p>
         <div id="search" hidden>
-          <input id="search-input" type="search" placeholder="Type something to start searching" />
-          <div id="sorting">Sort by: <button class="sort-button" onclick="sortResults('most-relevant')">most
-              relevant</button> | <button class="sort-button" onclick="sortResults('oldest-first')">oldest
-              first</button> | <button class="sort-button" onclick="sortResults('newest-first')">newest first</button> |
-            <button class="sort-button" onclick="sortResults('most-popular')">most popular</button>
+          <div class="sorting">Sort by:
+            <button class="sort-button most-relevant active"
+              onclick="sortResults('most-relevant')">relevance</button>&nbsp;&nbsp;//&nbsp;
+            <button class="sort-button newest-first"
+              onclick="sortResults('newest-first')">newest</button>&nbsp;&nbsp;//&nbsp;
+            <button class="sort-button oldest-first"
+              onclick="sortResults('oldest-first')">oldest</button>&nbsp;&nbsp;//&nbsp;
+            <button class="sort-button most-popular" onclick="sortResults('most-popular')">popularity</button>
           </div>
+          <input id="search-input" type="search" placeholder="Type something to start searching" />
           <div id="output"></div>
         </div>
         <div id="browse" hidden>
-          <div id="browse-sort">Sort by: <button class="sort-button-browse"
-              onclick="sortResults('oldest-first-browse')">oldest first</button> | <button class="sort-button-browse"
-              onclick="sortResults('newest-first-browse')">newest first</button> | <button class="sort-button"
-              onclick="sortResults('most-popular-browse')">most popular</button></div>
+          <div class="sorting">Sort by:
+            <button class="sort-button newest-first-browse active"
+              onclick="sortResults('newest-first-browse')">newest</button>&nbsp;&nbsp;//&nbsp;
+            <button class="sort-button oldest-first-browse"
+              onclick="sortResults('oldest-first-browse')">oldest</button>&nbsp;&nbsp;//&nbsp;
+            <button class="sort-button most-popular-browse"
+              onclick="sortResults('most-popular-browse')">popularity</button>
+          </div>
           <p id="paging">Page <input id="page-num" type="number" /> of <span id="page-total">...</span> </p>
           <div id="browse-output"></div>
         </div>
       </div>
-      <p>This site was made with <a href="https://tinysubversions.com/twitter-archive/make-your-own/">Darius Kazemi's
-          Twitter archiving tool</a>.</p>
-    </div>
+    </main>
   </div>
 </body>
 <script src="/twitter/searchDocuments.js"></script>
