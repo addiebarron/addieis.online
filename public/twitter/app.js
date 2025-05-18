@@ -1,8 +1,4 @@
-document.addEventListener("DOMContentLoaded", browseTab)
-
-let results;
-
-var index = new FlexSearch.Document({
+const index = new FlexSearch.Document({
   encode: function (str) {
     const cjkItems = str.replace(/[\x00-\x7F]/g, "").split("");
     const asciiItems = str.toLowerCase().split(/\W+/);
@@ -15,9 +11,61 @@ var index = new FlexSearch.Document({
   },
 });
 
-const searchInput = document.getElementById("search-input");
-
+let results;
 let processed = false;
+let browseDocuments = searchDocuments.sort(function (a, b) {
+  return new Date(b.created_at) - new Date(a.created_at);
+});
+
+// MAIN PAGE LOAD FUNCTION
+document.addEventListener("DOMContentLoaded", function () {
+  // Set tab from initial URL
+  const url = new URL(window.location.href);
+  url.searchParams.get("tab") == "search" ? searchTab() : browseTab();
+  // Setup search listener
+  const searchInput = document.getElementById("search-input");
+  searchInput.addEventListener("input", onSearchChange);
+})
+
+window.addEventListener("load", function () {
+  // Run search if initial 
+  const searchInput = document.getElementById("search-input");
+  if (searchInput.value) onSearchChange({ target: searchInput });
+})
+
+
+function searchTab() {
+  if (!processed) processData(searchDocuments);
+  const clickedTab = document.getElementById("search-tab");
+  clickedTab.classList.add("active");
+  const otherTab = document.getElementById("browse-tab");
+  otherTab.classList.remove("active");
+  document.getElementById("browse").hidden = true;
+  document.getElementById("search").hidden = false;
+  // Add "tab=search" param to URL
+  const url = new URL(window.location.href);
+  if (url.searchParams.get("tab") !== "search") {
+    url.searchParams.set("tab", "search");
+    history.replaceState(history.state, "", url.href);
+  }
+}
+
+function browseTab() {
+  const clickedTab = document.getElementById("browse-tab");
+  clickedTab.classList.add("active");
+  const otherTab = document.getElementById("search-tab");
+  otherTab.classList.remove("active");
+  document.getElementById("search").hidden = true;
+  document.getElementById("browse").hidden = false;
+  // Add "tab=browse" param to URL
+  const url = new URL(window.location.href);
+  if (url.searchParams.get("tab") !== "browse") {
+    url.searchParams.set("tab", "browse");
+    history.replaceState(history.state, "", url.href);
+  }
+}
+
+
 function processData(data) {
   document.getElementById("loading").hidden = false;
   for (doc of data) {
@@ -33,10 +81,6 @@ function processData(data) {
   document.getElementById("search").hidden = false;
   processed = true;
 }
-
-let browseDocuments = searchDocuments.sort(function (a, b) {
-  return new Date(b.created_at) - new Date(a.created_at);
-});
 
 function sortResults(criterion) {
   const buttons = document.querySelectorAll(".sort-button");
@@ -104,8 +148,8 @@ function renderResults() {
   }
 }
 
-function onSearchChange(e) {
-  results = index.search(e.target.value, { enrich: true });
+function onSearchChange({ target: { value } }) {
+  results = index.search(value, { enrich: true });
   if (results.length > 0) {
     // limit search results to the top 100 by relevance
     results = results.slice(0, 100);
@@ -117,27 +161,6 @@ function onSearchChange(e) {
     });
   }
   renderResults();
-}
-searchInput.addEventListener("input", onSearchChange);
-
-function searchTab() {
-  if (!processed) processData(searchDocuments);
-  const clickedTab = document.getElementById("search-tab");
-  clickedTab.classList.add("active");
-  const otherTab = document.getElementById("browse-tab");
-  otherTab.classList.remove("active");
-  document.getElementById("browse").hidden = true;
-  document.getElementById("search").hidden = false;
-}
-
-function browseTab() {
-  const clickedTab = document.getElementById("browse-tab");
-  clickedTab.classList.add("active");
-  const otherTab = document.getElementById("search-tab");
-  otherTab.classList.remove("active");
-  const searchContent = document.getElementById("search");
-  document.getElementById("search").hidden = true;
-  document.getElementById("browse").hidden = false;
 }
 
 const pageSize = 50;

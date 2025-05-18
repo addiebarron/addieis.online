@@ -41,6 +41,20 @@
   margin-bottom: 20px;
 }
 
+%hide-until-focused {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+
+  &:focus-within {
+    left: 5px;
+    top: 5px;
+    width: auto;
+    height: auto;
+  }
+}
+
 %sr-only {
   &:not(:focus):not(:active) {
     clip: rect(0 0 0 0);
