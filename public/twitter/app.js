@@ -17,6 +17,11 @@ let browseDocuments = searchDocuments.sort(function (a, b) {
   return new Date(b.created_at) - new Date(a.created_at);
 });
 
+const pageSize = 50;
+const pageMax = Math.floor(browseDocuments.length / pageSize) + 1;
+let page = 1;
+let browseIndex = (page - 1) * pageSize;
+
 // MAIN PAGE LOAD FUNCTION
 document.addEventListener("DOMContentLoaded", function () {
   // Set tab from initial URL
@@ -25,13 +30,35 @@ document.addEventListener("DOMContentLoaded", function () {
   // Setup search listener
   const searchInput = document.getElementById("search-input");
   searchInput.addEventListener("input", onSearchChange);
+  // Setup page num input
+  document.getElementById("page-total").innerText = pageMax;
+  document.getElementById("page-num").addEventListener("input", onPageNumChange);
+  document.getElementById("page-num").value = +page;
+  document.getElementById("page-num").max = pageMax;
+  document.getElementById("page-num").min = 1;
 })
 
 window.addEventListener("load", function () {
   // Run search if initial 
   const searchInput = document.getElementById("search-input");
   if (searchInput.value) onSearchChange({ target: searchInput });
+  const pageNumInput = document.getElementById("page-num");
+  if (pageNumInput.value) onPageNumChange({ target: pageNumInput });
+  const sortQueryParam = getQueryParam("sort");
+  if (sortQueryParam) sortResults(sortQueryParam);
 })
+
+function setQueryParam(key, value) {
+  const url = new URL(window.location.href);
+  if (url.searchParams.get(key) !== value) {
+    url.searchParams.set(key, value);
+    history.replaceState(history.state, "", url.href);
+  }
+}
+
+function getQueryParam(key) {
+  return (new URL(window.location.href)).searchParams.get(key);
+}
 
 
 function searchTab() {
@@ -42,12 +69,7 @@ function searchTab() {
   otherTab.classList.remove("active");
   document.getElementById("browse").hidden = true;
   document.getElementById("search").hidden = false;
-  // Add "tab=search" param to URL
-  const url = new URL(window.location.href);
-  if (url.searchParams.get("tab") !== "search") {
-    url.searchParams.set("tab", "search");
-    history.replaceState(history.state, "", url.href);
-  }
+  setQueryParam("tab", "search")
 }
 
 function browseTab() {
@@ -57,12 +79,7 @@ function browseTab() {
   otherTab.classList.remove("active");
   document.getElementById("search").hidden = true;
   document.getElementById("browse").hidden = false;
-  // Add "tab=browse" param to URL
-  const url = new URL(window.location.href);
-  if (url.searchParams.get("tab") !== "browse") {
-    url.searchParams.set("tab", "browse");
-    history.replaceState(history.state, "", url.href);
-  }
+  setQueryParam("tab", "browse")
 }
 
 
@@ -86,6 +103,7 @@ function sortResults(criterion) {
   const buttons = document.querySelectorAll(".sort-button");
   buttons.forEach(el => el.classList.remove("active"));
   document.querySelector(".sort-button." + criterion).classList.add("active");
+  setQueryParam("sort", criterion);
 
   if (criterion === "newest-first") {
     results = results.sort(function (a, b) {
@@ -163,22 +181,11 @@ function onSearchChange({ target: { value } }) {
   renderResults();
 }
 
-const pageSize = 50;
-const pageMax = Math.floor(browseDocuments.length / pageSize) + 1;
-let page = 1;
-let browseIndex = (page - 1) * pageSize;
-
 function onPageNumChange(e) {
   page = e.target.value;
   browseIndex = (page - 1) * pageSize;
   renderBrowse();
 }
-
-document.getElementById("page-total").innerText = pageMax;
-document.getElementById("page-num").addEventListener("input", onPageNumChange);
-document.getElementById("page-num").value = +page;
-document.getElementById("page-num").max = pageMax;
-document.getElementById("page-num").min = 1;
 
 function renderBrowse() {
   const output = browseDocuments
