@@ -66,15 +66,18 @@ body {
                 position: relative;
                 left: 10%;
                 margin-right: 10%;
-                padding-left: 1rem;
+                padding: 0.5rem 0.5rem 0.5rem 1rem;
 
                 display: flex;
                 align-items: center;
                 justify-content: space-around;
 
                 div.emoji {
+                    align-content: center;
+                    min-height: 45px;
                     padding-right: 1rem;
                     font-size: 32px;
+                    line-height: normal;
                     pointer-events: none;
                     user-select: none;
                 }
