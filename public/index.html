@@ -1,67 +1,71 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" href="/images/favicon.png" />
-    <link rel="stylesheet" href="css/index.css">
-    <title>addie</title>
-</head>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="icon" type="image/png" href="/images/favicon.png"/>
+        <link rel="stylesheet" href="css/index.css">
+        <title>addie</title>
+    </head>
 
-<body>
-    <div id="skip"><a href="#content">Skip to main content</a></div>
-    <div class="bug">🐞</div>
-    <div class="bug">🦋</div>
-    <div class="bug">🪲</div>
-    <div class="bug">🐞</div>
-    <div class="bug">🦋</div>
-    <div class="bug">🪲</div>
-    <div class="bug">🐞</div>
-    <div class="bug">🦋</div>
-    <div class="bug">🪲</div>
-    <script>
-        // Bugs
-        document.addEventListener("DOMContentLoaded", function () {
-            const bugs = document.querySelectorAll(".bug");
-            bugs.forEach(bug => {
-                bug.style.display = "block"; // Only show if JS is enabled
-                bug.style.top = Math.random() * 90 + 5 + "vh";
-                bug.style.left = Math.random() * 90 + 5 + "vw";
-                bug.style.transform = `rotate(${Math.random() * 240 - 120}deg)`
-            })
-        });
-    </script>
-    <main>
-        <div id="sidebar">
-            <a href="/">
-                <img class="me" src="images/me.jpg"
-                    alt="A photo of Addie looking into the camera with Mulberry juice on her lips.">
-            </a>
+    <body>
+        <div id="skip">
+            <a href="#content">Skip to main content</a>
         </div>
-        <div id="content">
-            <h1>addieis.online</h1>
-            <br>
-            <p>
+        <div class="bug">🐞</div>
+        <div class="bug">🦋</div>
+        <div class="bug">🪲</div>
+        <div class="bug">🐞</div>
+        <div class="bug">🦋</div>
+        <div class="bug">🪲</div>
+        <div class="bug">🐞</div>
+        <div class="bug">🦋</div>
+        <div class="bug">🪲</div>
+        <script>
+            // Bugs
+            document.addEventListener("DOMContentLoaded", function () {
+                const bugs = document.querySelectorAll(".bug");
+                bugs.forEach(bug => {
+                    bug.style.display = "block"; // Only show if JS is enabled
+                    bug.style.top = Math.random() * 90 + 5 + "vh";
+                    bug.style.left = Math.random() * 90 + 5 + "vw";
+                    bug.style.transform = `rotate(${Math.random() * 240 - 120}deg)`
+                })
+            });
+        </script>
+        <main>
+            <div id="sidebar">
+                <div>
+                    <a href="/">
+                        <img class="me" src="images/me.jpg"
+                    alt="A photo of Addie looking into the camera with Mulberry juice on her lips.">
+                    </a>
+                </div>
+            </div>
+            <div id="content">
+                <h1>addieis.online</h1>
+                <br>
+                <p>
                 hey I'm Addie and this is my web page. it is intended as a humble digital diorama with no regard for
                 branding or marketability. maybe you googled me, maybe I sent you the link, maybe you want to collab,
                 or you have a crush on me, or I just wanted to show off my design sensibilities. in any case, welcome.
             </p>
-            <div class="padding"></div>
-            <br>
-            <p>
-                <a href="/about">more about me</a>
-            </p>
-            <br>
-            <p>
-                <a href="/twitter">my twitter archive</a>
-            </p>
-            <br>
-            <p>
-                <a href="/instagram">my instagram archive</a>
-            </p>
-        </div>
-    </main>
-</body>
+                <div class="padding"></div>
+                <br>
+                <p>
+                    <a href="/about">more about me</a>
+                </p>
+                <br>
+                <p>
+                    <a href="/twitter">my twitter archive</a>
+                </p>
+                <br>
+                <p>
+                    <a href="/instagram">my instagram archive</a>
+                </p>
+            </div>
+        </main>
+    </body>
 
 </html>

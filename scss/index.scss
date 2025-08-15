@@ -3,10 +3,16 @@
 
 @use "global";
 
-@mixin mobile {
-    @media only screen and (max-width: 800px) {
-        @content;
-    }
+@mixin breakpoint($point) {
+  @if $point == small {
+    @media (max-width: 768px) { @content; }
+  }
+  @else if $point == medium {
+    @media (max-width: 1024px) { @content; }
+  }
+  @else if $point == large {
+    @media (max-width: 1300px) { @content; }
+  }
 }
 
 body {
@@ -31,7 +37,7 @@ body {
         gap: 4rem;
         padding: 4rem;
 
-        @include mobile {
+        @include breakpoint(small) {
             flex-direction: column;
             gap: 1rem;
             padding: 2rem;
@@ -86,13 +92,14 @@ body {
 
         #sidebar {
             text-align: center;
-
-            img {
-                @include mixins.circular(150px);
-                border: solid 1px black;
-
-                @include mobile {
-                    @include mixins.circular(125px);
+            div { 
+                display: block;
+                margin: auto;
+                max-width: 500px;
+                min-width: 300px;
+                img {
+                    border: solid 1px black;
+                    @include mixins.circular(50%);
                 }
             }
         }
@@ -100,7 +107,7 @@ body {
         #content {
             max-width: 600px;
 
-            @include mobile {
+            @include breakpoint(medium) {
                 margin: auto;
                 max-width: 700px;
                 padding-top: 20px;
@@ -110,7 +117,7 @@ body {
         div.padding {
             height: 2rem;
 
-            @include mobile {
+            @include breakpoint(medium) {
                 height: 1rem;
             }
         }

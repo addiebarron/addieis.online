@@ -34,8 +34,8 @@
 }
 
 @mixin circular($radius) {
-  width: 2 * $radius;
-  height: 2 * $radius;
+  max-width: 2 * $radius;
+  max-height: 2 * $radius;
   border-radius: $radius;
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
