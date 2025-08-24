@@ -1,97 +1,102 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" href="/images/favicon.png" />
-    <link rel="stylesheet" href="/css/index.css">
-    <title>addie</title>
-</head>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="icon" type="image/png" href="/images/favicon.png"/>
+        <link rel="stylesheet" href="/css/index.css">
+        <title>addie</title>
+    </head>
 
-<body>
-    <div id="skip"><a href="#content">Skip to main content</a></div>
-    <div class="bug">🐞</div>
-    <div class="bug">🦋</div>
-    <div class="bug">🪲</div>
-    <div class="bug">🐞</div>
-    <div class="bug">🦋</div>
-    <div class="bug">🪲</div>
-    <div class="bug">🐞</div>
-    <div class="bug">🦋</div>
-    <div class="bug">🪲</div>
-    <script>
-        // Bugs
-        document.addEventListener("DOMContentLoaded", function () {
-            const bugs = document.querySelectorAll(".bug");
-            bugs.forEach(bug => {
-                bug.style.display = "block"; // Only show if JS is enabled
-                bug.style.top = Math.random() * 90 + 5 + "vh";
-                bug.style.left = Math.random() * 90 + 5 + "vw";
-                bug.style.transform = `rotate(${Math.random() * 240 - 120}deg)`
-            })
-        });
-    </script>
-    <main>
-        <div id="sidebar">
-            <a href="/"><img src="/images/me.jpg"
-                    alt="A photo of Addie looking into the camera with Mulberry juice on her lips.">
-            </a>
-            <div class="padding"></div>
-            <p>
-                <a href="/">&larr; back home</a>
-            </p>
+    <body>
+        <div id="skip">
+            <a href="#content">Skip to main content</a>
         </div>
-        <div id="content">
-            <h1>what do I do?</h1>
+        <div class="bug">🐞</div>
+        <div class="bug">🦋</div>
+        <div class="bug">🪲</div>
+        <div class="bug">🐞</div>
+        <div class="bug">🦋</div>
+        <div class="bug">🪲</div>
+        <div class="bug">🐞</div>
+        <div class="bug">🦋</div>
+        <div class="bug">🪲</div>
+        <script>
+            // Bugs
+            document.addEventListener("DOMContentLoaded", function () {
+                const bugs = document.querySelectorAll(".bug");
+                bugs.forEach(bug => {
+                    bug.style.display = "block"; // Only show if JS is enabled
+                    bug.style.top = Math.random() * 90 + 5 + "vh";
+                    bug.style.left = Math.random() * 90 + 5 + "vw";
+                    bug.style.transform = `rotate(${Math.random() * 240 - 120}deg)`
+                })
+            });
+        </script>
+        <main>
+            <div id="sidebar">
+                <div>
+                    <a href="/">
+                        <img class="me" src="/images/me.jpg"
+                    alt="A photo of Addie looking into the camera with Mulberry juice on her lips.">
+                    </a>
+                </div>
+                <div class="padding"></div>
+                <p>
+                    <a href="/">&larr; back home</a>
+                </p>
+            </div>
+            <div id="content">
+                <h1>what do I do?</h1>
 
-            <div class="padding"></div>
+                <div class="padding"></div>
 
-            <h2>at work</h2>
-            <ul>
-                <li>
-                    <div class="emoji">🌱</div>
-                    <div>
+                <h2>at work</h2>
+                <ul>
+                    <li>
+                        <div class="emoji">🌱</div>
+                        <div>
                         currently I'm a gardener caring for native plant installations with
                         <a href="https://www.kylinarts.com" target="_blank">Kylin Arts</a> in Philly.
                     </div>
-                </li>
-                <li>
-                    <div class="emoji">🔧</div>
-                    <div>
+                    </li>
+                    <li>
+                        <div class="emoji">🔧</div>
+                        <div>
                         in the past I was a software engineer at
                         <a href="https://outschool.com" target="_blank">Outschool</a>
                         and a CX engineer at
                         <a href="https://bandcamp.com" target="_blank">Bandcamp</a>.
                     </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
 
-            <h2>not at work</h2>
-            <ul>
-                <li>
-                    <div class="emoji">🌳</div>
-                    <div>I tend fruit trees and other urban food crops as a Lead Orchard
+                <h2>not at work</h2>
+                <ul>
+                    <li>
+                        <div class="emoji">🌳</div>
+                        <div>I tend fruit trees and other urban food crops as a Lead Orchard
                         Volunteer with the
                         <a href="https://www.phillyorchards.org/" target="_blank">Philadelphia Orchard Project</a>.
                     </div>
-                </li>
-                <li>
-                    <div class="emoji">🛜</div>
-                    <div>I help build community controlled mesh networks as a Tech Advisory Board
+                    </li>
+                    <li>
+                        <div class="emoji">🛜</div>
+                        <div>I help build community controlled mesh networks as a Tech Advisory Board
                         member at
                         <a href="https://pcw.fi" target="_blank">Philly Community Wireless</a>.
                     </div>
-                </li>
-                <li>
-                    <div class="emoji">🌺</div>
-                    <div>
+                    </li>
+                    <li>
+                        <div class="emoji">🌺</div>
+                        <div>
                         I play the drums, ride & fix bikes, run tabletop games, build websites, and read in the park.
                     </div>
-                </li>
-            </ul>
-        </div>
-    </main>
-</body>
+                    </li>
+                </ul>
+            </div>
+        </main>
+    </body>
 
 </html>
