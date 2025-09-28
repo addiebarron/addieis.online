@@ -1,5 +1,6 @@
 @use "mixins";
 @use "placeholders";
+@use "colors";
 
 @use "global";
 
@@ -15,9 +16,18 @@
   }
 }
 
+:root {
+    @view-transition {
+        navigation: auto;
+    }
+}
+
 body {
     a {
-        color: #d041ff !important; // Style visited links too
+        color: colors.$link !important; // Style visited links too
+        &:hover {
+            color: colors.$linkhover !important;
+        }
     }
 
     #skip {
@@ -43,54 +53,66 @@ body {
             padding: 2rem;
         }
 
-        p,
-        h1,
-        h2,
-        li {
-            @extend %shadowbox;
-        }
-
-        h1,
-        h2 {
-            padding: 0rem 0.7rem;
-        }
-
-        h1 {
-            font-size: 3rem;
-        }
-
-        h2 {
-            font-size: 1.6rem;
-        }
-
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
+        #content {
+            & > p ,
+            & > div.p, 
+            & > h1, 
+            & > h2
+            {
+                @extend %shadowbox;
+            }
+    
+            h1,
+            h2 {
+                padding: 0rem 0.7rem;
+            }
+    
+            h1 {
+                font-size: 3rem;
+            }
+    
+            h2 {
+                font-size: 1.6rem;
+            }
 
             li {
-                position: relative;
-                left: 10%;
-                margin-right: 10%;
-                padding: 0.5rem 0.5rem 0.5rem 1rem;
-
-                display: flex;
-                align-items: center;
-                justify-content: space-around;
-
-                div.emoji {
-                    align-content: center;
-                    min-height: 45px;
-                    padding-right: 1rem;
-                    font-size: 32px;
-                    line-height: normal;
-                    pointer-events: none;
-                    user-select: none;
+                margin-left: 2rem;
+            }
+    
+            & > ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+    
+                li { 
+                    @extend %shadowbox;
+                    position: relative;
+                    left: 10%;
+                    margin-right: 10%;
+                    padding: 0.5rem 0.5rem 0.5rem 1rem;
+    
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+    
+                    div.emoji {
+                        align-content: center;
+                        min-height: 45px;
+                        padding-right: 1rem;
+                        font-size: 32px;
+                        line-height: normal;
+                        pointer-events: none;
+                        user-select: none;
+                    }
                 }
             }
         }
 
         #sidebar {
+            & > button {
+                @extend %shadowbox;
+                font-family: inherit;
+            }
             text-align: center;
             div { 
                 display: block;
