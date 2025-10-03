@@ -1,16 +1,16 @@
 {
   "name": "addieis.online",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "serve": "live-server public",
-    "watch": "sass --watch scss:public/css",
-    "build": "sass scss:public/css",
-    "start": "npm run serve & npm run watch"
-  },
   "author": "Addie Barron",
-  "devDependencies": {
-    "live-server": "^1.2.2",
-    "sass": "^1.85.1"
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.13.7",
+    "sass": "^1.93.2"
   }
 }

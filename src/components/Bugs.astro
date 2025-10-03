@@ -1,0 +1,25 @@
+---
+const bugs = ["🐞", "🦋", "🪲", "🐞", "🦋", "🪲", "🐞", "🦋", "🪲"];
+---
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const bugs = document.querySelectorAll<HTMLElement>(".bug");
+    bugs.forEach(bug => {
+      bug.style.display = "block"; // Only show if JS is enabled
+      bug.style.top = Math.random() * 90 + 5 + "vh";
+      bug.style.left = Math.random() * 90 + 5 + "vw";
+      bug.style.transform = `rotate(${Math.random() * 240 - 120}deg)`;
+    });
+  });
+</script>
+
+{bugs.map(bug => <div>{bug}</div>)}
+
+<style lang="scss">
+  div {
+    display: none; /* Enabled by JS */
+    position: absolute;
+    font-size: 24px;
+  }
+</style>

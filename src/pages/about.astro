@@ -1,0 +1,44 @@
+---
+import EmojiList from "@components/EmojiList.astro";
+import Shadowbox from "../layouts/Shadowbox.astro";
+---
+
+<Shadowbox>
+  <h1>what do I do?</h1>
+
+  <h2>at work</h2>
+  <EmojiList
+    list={[
+      {
+        emoji: "🌐",
+        html: `I make websites for clients looking for an alternative to corporate site builders! check out my portfolio <a href="/portfolio" target="_blank">over here</a>.`,
+      },
+      {
+        emoji: "🌱",
+        html: `Currently I am a gardener caring for native plant installations with <a href="https://www.kylinarts.com" target="_blank">Kylin Arts</a> in Philly.`,
+      },
+      {
+        emoji: "🔧",
+        html: `In the past I was a software engineer at <a href="https://outschool.com" target="_blank">Outschool</a> and a CX engineer at <a href="https://bandcamp.com" target="_blank">Bandcamp</a>.`,
+      },
+    ]}
+  />
+
+  <h2>not at work</h2>
+  <EmojiList
+    list={[
+      {
+        emoji: "🌳",
+        html: `I tend fruit trees and other urban food crops as a Lead Orchard Volunteer with the <a href="https://www.phillyorchards.org/" target="_blank">Philadelphia Orchard Project</a>.`,
+      },
+      {
+        emoji: "🛜",
+        html: `I help build community controlled mesh networks as a Tech Advisory Board member at <a href="https://pcw.fi" target="_blank">Philly Community Wireless</a>.`,
+      },
+      {
+        emoji: "🌺",
+        html: `I play the drums, ride & fix bikes, run tabletop games, build websites, and read in the park.`,
+      },
+    ]}
+  />
+</Shadowbox>

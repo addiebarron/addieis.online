@@ -1,0 +1,52 @@
+---
+import Bugs from "@components/Bugs.astro";
+import Header from "@components/Header.astro";
+
+import Favicon from "@assets/favicon.png";
+
+import "@styles/global.scss";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href={Favicon.src} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Addie Is Online</title>
+  </head>
+  <body>
+    <Bugs />
+    <div id="page">
+      <Header />
+      <main>
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>
+
+<style lang="scss">
+  @use "@styles/util";
+
+  #page {
+    position: relative;
+    display: flex;
+    gap: 4rem;
+    padding: 4rem;
+    @include util.breakpoint(small) {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 2rem;
+    }
+  }
+
+  main {
+    max-width: 600px;
+    @include util.breakpoint(medium) {
+      margin: auto;
+      max-width: 700px;
+      padding-top: 20px;
+    }
+  }
+</style>

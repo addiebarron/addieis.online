@@ -1,0 +1,54 @@
+---
+import type { AstroVNode } from "astro/jsx-runtime";
+
+interface Props {
+  list: {
+    html: string;
+    emoji: string;
+  }[];
+}
+
+const { list } = Astro.props;
+---
+
+<ul class="no-shadowbox">
+  {
+    list.map(({ html, emoji }) => (
+      <li>
+        <div class="emoji">{emoji}</div>
+        <div set:html={html} />
+      </li>
+    ))
+  }
+</ul>
+
+<style lang="scss">
+  @use "@styles/util";
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li {
+      @extend %shadowbox;
+      position: relative;
+      left: 10%;
+      margin-right: 10%;
+      padding: 0.5rem 0.5rem 0.5rem 1rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      div.emoji {
+        align-content: center;
+        min-height: 45px;
+        padding-right: 1rem;
+        font-size: 32px;
+        line-height: normal;
+        pointer-events: none;
+        user-select: none;
+      }
+    }
+  }
+</style>

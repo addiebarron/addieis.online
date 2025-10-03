@@ -1,0 +1,52 @@
+---
+import NavLink from "./NavLink.astro";
+import AddieImg from "@assets/me.jpg";
+
+const pages = [
+  { href: "/", title: "home" },
+  { href: "/about", title: "about" },
+  { href: "/portfolio", title: "portfolio" },
+];
+---
+
+<header>
+  <div>
+    <a href="/">
+      <img
+        src={AddieImg.src}
+        alt="A photo of Addie sitting on a roof deck, smiling, at sunset."
+      />
+    </a>
+  </div>
+  <nav>
+    {pages.map(({ href, title }) => <NavLink {href}>{title}</NavLink>)}
+  </nav>
+</header>
+
+<style lang="scss">
+  @use "@styles/util";
+
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    & > div {
+      width: 100%;
+      a {
+        display: block;
+        overflow: hidden;
+        border: solid 1px black;
+        @include util.circular(50%);
+        img {
+          width: 100%;
+          display: block;
+        }
+      }
+    }
+    nav {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+    }
+  }
+</style>

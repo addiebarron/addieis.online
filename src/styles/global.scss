@@ -1,0 +1,99 @@
+@use "util";
+@use "theme";
+
+:root {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+@include theme.font-faces;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: theme.$background;
+  color: theme.$text;
+  font-family: theme.$fontFamily;
+  font-size: theme.$fontSize;
+
+  line-height: 1.5em;
+
+  // Layout
+
+  #page {
+    position: relative;
+    display: flex;
+    gap: 4rem;
+    padding: 4rem;
+    @include util.breakpoint(small) {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 2rem;
+      align-items: center;
+    }
+    header {
+      min-width: 250px;
+      max-width: 450px;
+    }
+    main {
+      min-width: 350px;
+      flex: 1;
+    }
+  }
+
+  a,
+  a:visited {
+    color: theme.$link;
+    font-weight: bold;
+    text-decoration: underline;
+
+    &:hover {
+      color: theme.$linkhover;
+    }
+
+    &:focus {
+      color: black;
+      outline: dashed 2px black;
+      outline-offset: 5px;
+    }
+  }
+
+  h1,
+  h2 {
+    padding: 0rem 0.7rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    line-height: 3.5rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+  }
+
+  li {
+    margin-left: 2rem;
+  }
+}
+
+.shadowbox:not(.no-shadowbox) {
+  @extend %shadowbox;
+}
+.prose-shadowbox {
+  & > :is(h1, h2, p, ul):not(.no-shadowbox) {
+    @extend %shadowbox;
+  }
+}

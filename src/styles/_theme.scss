@@ -1,0 +1,24 @@
+// Colors
+
+$text: #00208a;
+$link: #cc00ac;
+$linkhover: #ff3798;
+$boxes: #ddffd8;
+$boxshadow: #00165e;
+$nav: #ffffff;
+$background: #90b832;
+
+// Fonts
+
+@mixin font-faces {
+  /* pp mondwest */
+  @font-face {
+    font-family: "PP Mondwest";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/ppmondwest/PPMondwest-Regular.otf");
+  }
+}
+
+$fontFamily: "PP Mondwest";
+$fontSize: 18px;

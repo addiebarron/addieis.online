@@ -1,0 +1,131 @@
+@use "sass:math";
+@use "theme";
+
+// MIXINS
+
+@mixin breakpoint($point) {
+  @if $point == small {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $point == medium {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  } @else if $point == large {
+    @media (max-width: 1300px) {
+      @content;
+    }
+  }
+}
+
+@mixin transition($properties: all, $duration: 0.2s, $ease: ease) {
+  //keep it this way so as to be able to use a list of properties
+  transition-property: $properties;
+  -webkit-transition-property: $properties;
+  transition-duration: $duration;
+  -webkit-transition-duration: $duration;
+  transition-timing-function: $ease;
+  -webkit-transition-timing-function: $ease;
+}
+
+@mixin transform($transforms...) {
+  -moz-transform: $transforms;
+  -o-transform: $transforms;
+  -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+
+@mixin filter($filters...) {
+  filter: $filters;
+  -webkit-filter: $filters;
+  -moz-filter: $filters;
+  -o-filter: $filters;
+}
+
+@mixin underline($underline-distance, $color) {
+  border-bottom: solid 1px $color;
+  padding-bottom: $underline-distance;
+  position: relative;
+  top: math.div($underline-distance + 1, 2);
+}
+
+@mixin circular($radius) {
+  max-width: 2 * $radius;
+  max-height: 2 * $radius;
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+}
+
+@mixin shadow($dist: 10px, $opacity: 1, $color: theme.$boxshadow) {
+  box-shadow: $dist $dist rgba($color, $opacity);
+}
+
+// PLACEHOLDERS
+
+%center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  @include transform(translate(-50%, -50%));
+}
+
+%vcenter {
+  position: absolute;
+  top: 50%;
+  @include transform(translateY(-50%));
+}
+
+%hcenter {
+  position: absolute;
+  left: 50%;
+  @include transform(translateX(-50%));
+}
+
+%overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+%shadowbox {
+  &:is(h1, h2, h3, h4, h5, h6, p, ul) {
+    display: table;
+  }
+  padding: 5px 10px;
+  background: theme.$boxes;
+  @include shadow(10px, 1);
+  border: solid 1px black;
+  margin-bottom: 20px;
+}
+
+%hide-until-focused {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+
+  &:focus-within {
+    left: 5px;
+    top: 5px;
+    width: auto;
+    height: auto;
+  }
+}
+
+%sr-only {
+  &:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+}
