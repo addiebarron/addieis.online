@@ -1,5 +1,7 @@
 ---
-const bugs = ["🐞", "🦋", "🪲", "🐞", "🦋", "🪲", "🐞", "🦋", "🪲"];
+const bugOptions = ["🐞", "🦋", "🪲"];
+const bugRepeat = 6; // number of times the bug options will be repeated
+const bugs = [].concat(...Array(bugRepeat).fill(bugOptions));
 ---
 
 <script>
