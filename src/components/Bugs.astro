@@ -14,10 +14,10 @@ const bugs = ["🐞", "🦋", "🪲", "🐞", "🦋", "🪲", "🐞", "🦋", "�
   });
 </script>
 
-{bugs.map(bug => <div>{bug}</div>)}
+{bugs.map(bug => <div class="bug">{bug}</div>)}
 
 <style lang="scss">
-  div {
+  .bug {
     display: none; /* Enabled by JS */
     position: absolute;
     font-size: 24px;
