@@ -1,10 +1,8 @@
 @use "util";
 @use "theme";
 
-:root {
-  @view-transition {
-    navigation: auto;
-  }
+@view-transition {
+  navigation: auto;
 }
 
 @include theme.font-faces;
