@@ -38,9 +38,9 @@ body {
     padding: 4rem;
     @include util.breakpoint(small) {
       flex-direction: column;
+      align-items: center;
       gap: 1rem;
       padding: 2rem;
-      align-items: center;
     }
     header {
       min-width: 250px;
