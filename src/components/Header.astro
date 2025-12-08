@@ -5,7 +5,6 @@ import AddieImg from "@assets/me.jpg";
 const pages = [
   { href: "/", title: "Home" },
   { href: "/about", title: "About" },
-  { href: "/portfolio", title: "Portfolio" },
 ];
 ---
 
@@ -18,9 +17,9 @@ const pages = [
       />
     </a>
   </div>
-  <nav>
+  <!-- <nav>
     {pages.map(({ href, title }) => <NavLink {href}>{title}</NavLink>)}
-  </nav>
+  </nav> -->
 </header>
 
 <style lang="scss">
@@ -32,6 +31,7 @@ const pages = [
     gap: 2rem;
     & > div {
       width: 100%;
+      min-height: 350px;
       a {
         display: block;
         overflow: hidden;
@@ -45,8 +45,15 @@ const pages = [
     }
     nav {
       display: flex;
-      gap: 2rem;
+      flex-wrap: wrap;
+      gap: 0 2rem;
       justify-content: center;
+      a {
+        &:hover {
+          @extend %shadowbox-hover;
+        }
+        white-space: nowrap;
+      }
     }
   }
 </style>

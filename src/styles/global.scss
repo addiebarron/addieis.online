@@ -40,9 +40,9 @@ body {
       gap: 1rem;
       padding: 2rem;
     }
-    header {
+    & > header {
       min-width: 250px;
-      max-width: 450px;
+      max-width: 350px;
     }
     main {
       min-width: 350px;
@@ -70,6 +70,7 @@ body {
   h1,
   h2 {
     padding: 0rem 0.7rem;
+    margin-top: 2.5rem;
   }
 
   h1 {
@@ -91,7 +92,7 @@ body {
   @extend %shadowbox;
 }
 .prose-shadowbox {
-  & > :is(h1, h2, p, ul):not(.no-shadowbox) {
+  & > :is(h1, h2, h3, p, ul):not(.no-shadowbox) {
     @extend %shadowbox;
   }
 }
